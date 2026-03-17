@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equity Research Dashboard — Mag 7 + TSM | March 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060709;--bg2:#0d0f14;--bg3:#14171f;--bg4:#1a1e28;--bg5:#212636;--brd:#2a2f3e;--brd2:#353b4e;--t1:#eaecf2;--t2:#8c91a6;--t3:#585e75;--grn:#22c55e;--grn-bg:rgba(34,197,94,.08);--grn-bg2:rgba(34,197,94,.15);--red:#ef4444;--red-bg:rgba(239,68,68,.08);--red-bg2:rgba(239,68,68,.15);--blu:#3b82f6;--blu-bg:rgba(59,130,246,.08);--gld:#eab308;--gld-bg:rgba(234,179,8,.08);--gld-bg2:rgba(234,179,8,.15);--prp:#a855f7;--prp-bg:rgba(168,85,247,.08);--cyan:#06b6d4;--radius:10px;--radius-sm:6px}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--t1);font-family:'DM Sans',system-ui,sans-serif;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:var(--bg2)}::-webkit-scrollbar-thumb{background:var(--brd2);border-radius:3px}
+.disc{background:linear-gradient(90deg,rgba(239,68,68,.06),rgba(234,179,8,.04));border-bottom:1px solid rgba(239,68,68,.15);padding:10px 24px;font-size:11.5px;color:var(--t2);cursor:pointer;transition:all .3s}.disc:hover{background:rgba(239,68,68,.08)}.disc b{color:var(--red)}
+.disc-body{max-height:0;overflow:hidden;transition:max-height .4s;padding:0 24px;background:var(--bg2);font-size:12px;color:var(--t3);line-height:1.7}.disc-body.open{max-height:200px;padding:12px 24px;border-bottom:1px solid var(--brd)}
+.hdr{padding:28px 32px 12px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hdr h1{font-family:'Instrument Serif',serif;font-size:2rem;font-weight:400;letter-spacing:-.02em;line-height:1.1}.hdr h1 span{color:var(--t3);font-style:italic}
+.hdr-meta{font-size:11px;color:var(--t3);text-align:right;line-height:1.6}.hdr-meta b{color:var(--grn)}
+.nav-wrap{position:sticky;top:0;z-index:100;background:rgba(6,7,9,.92);border-bottom:1px solid var(--brd);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.nav{display:flex;gap:2px;padding:0 32px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
+.nav-tab{padding:11px 13px;font-size:12px;font-weight:600;color:var(--t3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;letter-spacing:.02em;white-space:nowrap;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.nav-tab:hover{color:var(--t2)}.nav-tab.active{color:var(--t1);border-bottom-color:var(--grn)}
+.nav-tab.special{color:var(--gld)}.nav-tab.special.active{color:var(--gld);border-bottom-color:var(--gld)}
+.nav-tab.portfolio{color:var(--prp)}.nav-tab.portfolio.active{color:var(--prp);border-bottom-color:var(--prp)}
+.nav-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+#content{padding:24px 32px 80px;max-width:1200px}
+.hero{display:grid;grid-template-columns:1fr 1.2fr;gap:14px;margin-bottom:20px}
+.hero-signal{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:10px}
+.hero-signal .ticker-row{display:flex;align-items:center;gap:12px}
+.hero-signal .ticker{font-family:'JetBrains Mono',monospace;font-size:1.8rem;font-weight:700}
+.hero-signal .company-name{font-size:12px;color:var(--t3)}
+.verdict-badge{display:inline-flex;padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.03em}
+.verdict-attractive{background:var(--grn-bg2);color:var(--grn);border:1px solid rgba(34,197,94,.3)}
+.verdict-fair{background:var(--gld-bg2);color:var(--gld);border:1px solid rgba(234,179,8,.3)}
+.verdict-speculative{background:var(--prp-bg);color:var(--prp);border:1px solid rgba(168,85,247,.3)}
+.hero-oneliner{font-size:13px;color:var(--t2);line-height:1.6;border-top:1px solid var(--brd);padding-top:10px}
+.fv-gauge{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:20px}
+.fv-gauge h4{font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.fv-track{position:relative;height:28px;background:linear-gradient(90deg,var(--red-bg2) 0%,var(--gld-bg2) 50%,var(--grn-bg2) 100%);border-radius:14px;margin-bottom:8px}
+.fv-marker{position:absolute;top:-2px;width:3px;height:32px;border-radius:2px;transform:translateX(-50%)}
+.fv-marker::after{content:attr(data-label);position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:700;color:var(--t1);white-space:nowrap;font-family:'JetBrains Mono',monospace}
+.fv-labels{display:flex;justify-content:space-between;font-size:11px;font-family:'JetBrains Mono',monospace}
+.fv-labels .bear-l{color:var(--red)}.fv-labels .bull-l{color:var(--grn)}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:18px}
+.kpi{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius-sm);padding:10px 12px}
+.kpi-label{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700}
+.kpi-sub{font-size:10px;margin-top:2px}
+.kpi-grn{color:var(--grn)}.kpi-red{color:var(--red)}.kpi-gld{color:var(--gld)}
+.section{margin-bottom:18px}
+.section-title{font-size:13px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--brd);display:flex;align-items:center;gap:8px;cursor:default;user-select:none}
+.tbl{width:100%;border-collapse:collapse;font-size:11.5px}.tbl th{padding:6px 10px;text-align:left;font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--brd);font-weight:600;position:sticky;top:0;background:var(--bg3)}
+.tbl td{padding:6px 10px;border-bottom:1px solid rgba(42,47,62,.4);font-family:'JetBrains Mono',monospace;font-size:11px}.tbl tr:hover td{background:rgba(59,130,246,.03)}
+.tbl-wrap{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);overflow-x:auto}
+.bb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.bb-card{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:16px}
+.bb-card.bull{border-left:3px solid var(--grn)}.bb-card.bear{border-left:3px solid var(--red)}
+.bb-card h3{font-size:12.5px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.bb-card ul{list-style:none;padding:0}.bb-card li{padding:4px 0;font-size:12px;color:var(--t2);line-height:1.5;border-bottom:1px solid rgba(42,47,62,.3)}.bb-card li:last-child{border:none}
+.verdict{background:var(--bg4);border:1px solid var(--brd2);border-radius:var(--radius);padding:16px;margin-top:12px}
+.verdict h3{font-size:13px;margin-bottom:6px;color:var(--gld)}
+.ec-summary{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:14px;font-size:12px;line-height:1.7;color:var(--t2)}.ec-summary b{color:var(--t1)}.ec-summary .q{color:var(--blu);font-style:italic}
+.ft-agg{display:flex;gap:16px;align-items:center;margin-bottom:14px;background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:14px}
+.ft-agg-bar{display:flex;height:12px;flex:1;border-radius:6px;overflow:hidden;gap:2px}
+.ft-agg-seg{height:100%;border-radius:4px}
+.ft-agg-legend{display:flex;gap:14px;font-size:12px;color:var(--t2);flex-shrink:0}.ft-agg-legend span{display:flex;align-items:center;gap:4px}
+.ft-agg-legend .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.ft-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:7px}
+.ft-card{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius-sm);padding:9px 11px;font-size:11px;line-height:1.5;color:var(--t2)}
+.ft-card .handle{color:var(--blu);font-weight:600;font-size:10px}
+.ft-card .stance{display:inline-block;padding:1px 6px;border-radius:10px;font-size:9px;font-weight:700;margin-left:3px}
+.ft-card .stance.bullish{background:var(--grn-bg);color:var(--grn)}.ft-card .stance.bearish{background:var(--red-bg);color:var(--red)}.ft-card .stance.neutral{background:var(--gld-bg);color:var(--gld)}
+.port-card{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:18px;margin-bottom:14px}
+.port-card h3{font-size:14px;margin-bottom:2px}.port-card .subtitle{font-size:11px;color:var(--t3);margin-bottom:12px}
+.alloc-bar{display:flex;height:34px;border-radius:var(--radius-sm);overflow:hidden;margin-bottom:10px;gap:2px}
+.alloc-seg{display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;color:#fff;border-radius:3px;min-width:0}
+.compare-signals{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:7px;margin-bottom:18px}
+.cs-card{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius-sm);padding:10px;text-align:center;cursor:pointer;transition:all .15s}
+.cs-card:hover{border-color:var(--brd2);transform:translateY(-1px)}
+.cs-card .cs-ticker{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px;margin-bottom:2px}
+.cs-card .cs-fwd{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2)}
+.heat-good{color:var(--grn)}.heat-mid{color:var(--gld)}.heat-bad{color:var(--red)}
+@media(max-width:768px){.hero{grid-template-columns:1fr}.bb-grid{grid-template-columns:1fr}.ov-grid{grid-template-columns:1fr !important}}
+@media(max-width:640px){.hdr{padding:16px 16px 8px}.nav{padding:0 16px}#content{padding:16px 16px 60px}.kpi-grid{grid-template-columns:repeat(2,1fr)}.hdr h1{font-size:1.4rem}.compare-signals{grid-template-columns:repeat(2,1fr)}.ft-agg{flex-direction:column;align-items:stretch}.ft-narr{grid-template-columns:1fr !important}}
+</style>
+</head>
+<body>
+<div class="disc" onclick="document.getElementById('discBody').classList.toggle('open')"><b>⚠️ DISCLAIMER</b> — Denna analys är INTE investeringsrådgivning. Klicka för mer info.</div>
+<div class="disc-body" id="discBody">Strukturerat researchunderlag baserat på publikt tillgänglig data och AI-bedömningar. Verifiera mot primärkällor. ALDRIG basera investeringsbeslut enbart på denna analys. Senast uppdaterad: 17 mars 2026.</div>
+<div class="hdr"><h1>Equity Research Dashboard <span>Mag 7 + TSM</span></h1><div class="hdr-meta">Analys: <b>17 mars 2026</b> · 8 agenter · 3 portföljer · 21 FinTwit-profiler</div></div>
+<div class="nav-wrap"><nav class="nav" id="nav"></nav></div>
+<div id="content"></div>
+<script>
+const D={NVDA:{name:'NVIDIA',price:190,mktCap:'4.6T',fyLabel:'FY2026',rev:'215.9B',revGrowth:'+65%',qi:'Q4 FY2026: $68.1B (+73% YoY)',grossMargin:'71.3%',opMargin:'60.4%',eps_gaap:'$4.90',eps_nongaap:'$4.77',pe_trailing:'38.8x',pe_fwd:'24.2x',evEbitda:'33x',peg:'0.59',sbc_pct:'3.8%',ev_fcf:'~47x',guidance:'Q1 FY27: $78B (±2%)',signal:'attractive',signalText:'Attraktiv',oneliner:'Bäst risk/reward bland AI-infra. PEG 0.59 med +65% tillväxt. Cyklisk risk finns men inference-TAM ger ny S-kurva.',bull_fv_low:220,bull_fv_high:260,bear_fv_low:120,bear_fv_high:150,quarterly:[{q:'Q1',rev:44.1,eps:0.89},{q:'Q2',rev:46.7,eps:0.99},{q:'Q3',rev:57.0,eps:1.30},{q:'Q4',rev:68.1,eps:1.76}],earnings_summary:'<b>Q4 FY2026 (25 feb 2026):</b> Huang: <span class="q">"Agentic AI inflection point has arrived."</span> DC $62.3B (+75%). Blackwell levererar. Guidance $78B. Kina EXKLUDERAT.',bull:['AI CapEx $600B+ 2026 — NVDA primär mottagare','Blackwell + Vera Rubin multi-year roadmap','Inference-TAM öppnar ny tillväxtfas','PEG 0.59 — billigast growth/value','Kina exkluderat = ren upside'],bear:['CapEx-cykel kan toppa 2026','Gross margin press (71.3% FY vs 75% Q4)','Top 4 kunder ~50% DC revenue','Custom ASIC: TPU, Trainium, MTIA','Geopolitisk risk Taiwan/Kina'],bull_fv:'$220–260',bear_fv:'$120–150',verdict:'ÖVERENS: Dominerar utan utmanare 12–18 mån. DIVERGERAR: Om CapEx peakar → -30%+. Marcus: perfekt exekvering prisad. Victoria: inference ger ny S-kurva.'},
+AAPL:{name:'Apple',price:237,mktCap:'3.5T',fyLabel:'FY2025',rev:'416.2B',revGrowth:'+6.4%',qi:'Q1 FY2026: $143.8B (+15.7% YoY)',grossMargin:'46.9%',opMargin:'32.0%',eps_gaap:'$7.46',eps_nongaap:'$7.46',pe_trailing:'35.0x',pe_fwd:'30.5x',evEbitda:'24.7x',peg:'2.9',sbc_pct:'2.4%',ev_fcf:'~35x',guidance:'Ingen formell',signal:'fair',signalText:'Rättvist värderad',oneliner:'Ultimat kvalitetsbolag men PEG 2.9 prisar perfektion. Vänta på AI upgrade-cykel eller bättre entry.',bull_fv_low:260,bull_fv_high:290,bear_fv_low:180,bear_fv_high:210,quarterly:[{q:'Q2',rev:95.4,eps:1.65},{q:'Q3',rev:94.0,eps:1.40},{q:'Q4',rev:102.5,eps:1.85},{q:'Q1',rev:143.8,eps:2.40}],earnings_summary:'<b>Q1 FY2026 (30 jan 2026):</b> Cook: <span class="q">"our best quarter ever."</span> Revenue $143.8B (+15.7%). Services ATH. iPhone $209.6B FY. Installed base ATH. $100B buyback.',bull:['iPhone 17 + Apple Intelligence supercykel','Services $100B+ run-rate, 70%+ GM','Installed base >2.35B — moat','$100B buyback','Net Income $112B kassaflödeskraft'],bear:['PEG 2.9 — dyrast relativt tillväxt','iPhone-tillväxt ASP-driven, ej volym','AI-strategi otydlig vs Gemini/GPT','Kina ~17% rev, Huawei-konkurrens','EU DMA pressar Services'],bull_fv:'$260–290',bear_fv:'$180–210',verdict:'ÖVERENS: Ultimat kvalitet, oslagbar moat. DIVERGERAR: Victoria ser Services × AI; Marcus ser premium-multipel för medioker tillväxt.'},
+GOOGL:{name:'Alphabet',price:331,mktCap:'2.0T',fyLabel:'FY2025',rev:'>400B',revGrowth:'+18%',qi:'Q4 2025: $113.8B (+18% YoY)',grossMargin:'57.9%',opMargin:'31.6%',eps_gaap:'$2.82 Q4',eps_nongaap:'~$2.67',pe_trailing:'22x',pe_fwd:'20x',evEbitda:'18x',peg:'1.1',sbc_pct:'~8%',ev_fcf:'~28x',guidance:'CapEx 2026: $175–185B',signal:'attractive',signalText:'Attraktiv',oneliner:'Billigast i Mag 7. P/E 22x med +18% tillväxt, Cloud +48%, YouTube $60B. Bäst risk/reward.',bull_fv_low:380,bull_fv_high:420,bear_fv_low:250,bear_fv_high:280,quarterly:[{q:'Q1',rev:90.2,eps:2.11},{q:'Q2',rev:94.3,eps:2.28},{q:'Q3',rev:102.3,eps:2.56},{q:'Q4',rev:113.8,eps:2.82}],earnings_summary:'<b>Q4 2025 (4 feb 2026):</b> Pichai: <span class="q">"Revenue exceeded $400B first time."</span> Cloud +48%. Search +17%. YouTube >$60B. Gemini 3 launch. 750M MAU. CapEx $175–185B 2026.',bull:['P/E 22x med +18% tillväxt = billigast','Cloud +48% — snabbast sedan 2021','Search +17% trots AI-narrativ','YouTube $60B ≈ $500B+ standalone','Waymo-optionalitet oprisad'],bear:['CapEx $175–185B osäker ROI','SBC ~8% urholkar GAAP','DOJ antitrust risk','YouTube ads +9% avtagande','AI-kannibalisering av Search'],bull_fv:'$380–420',bear_fv:'$250–280',verdict:'ÖVERENS: Mest undervärderat. DIVERGERAR: CapEx $175–185B kan pressa margins 2026–27.'},
+META:{name:'Meta Platforms',price:669,mktCap:'1.7T',fyLabel:'FY2025',rev:'201.0B',revGrowth:'+22%',qi:'Q4 2025: $59.9B (+24% YoY)',grossMargin:'82.0%',opMargin:'41%',eps_gaap:'$8.88 Q4',eps_nongaap:'~$8.88',pe_trailing:'28x',pe_fwd:'22x',evEbitda:'17x',peg:'1.05',sbc_pct:'~10%',ev_fcf:'~33x',guidance:'Q1: $52.5–57.5B · CapEx $115–135B',signal:'attractive',signalText:'Attraktiv',oneliner:'Annons-AI levererar exceptionellt. PEG 1.05 + 82% GM. Reality Labs-burn och CapEx $125B enda farhågor.',bull_fv_low:750,bull_fv_high:850,bear_fv_low:500,bear_fv_high:580,quarterly:[{q:'Q1',rev:44.1,eps:6.29},{q:'Q2',rev:47.9,eps:7.09},{q:'Q3',rev:49.1,eps:6.03},{q:'Q4',rev:59.9,eps:8.88}],earnings_summary:'<b>Q4 2025 (28 jan 2026):</b> Zuckerberg: <span class="q">"personal superintelligence."</span> Rev +24%. Ads +18% impressions. DAP 3.58B. CapEx $115–135B. Reality Labs -12%.',bull:['Ad-AI: +24%, 3.6B DAP','PEG 1.05 + 82% GM','WhatsApp-monetization early stage','Llama open-source AI-moat','Reels vs TikTok framgångsrik'],bear:['CapEx $115–135B pressar FCF','SBC ~10% högst i gruppen','Reality Labs ~$5B/Q förlust','Regulatorisk risk EU/US','97% ad-beroende'],bull_fv:'$750–850',bear_fv:'$500–580',verdict:'ÖVERENS: Best-in-class ad-targeting. DIVERGERAR: CapEx-magnitude — Marcus: orimligt. Victoria: sänker cost-per-conversion.'},
+MSFT:{name:'Microsoft',price:405,mktCap:'3.0T',fyLabel:'FY2026 H1',rev:'$81.3B Q2',revGrowth:'+17%',qi:'Q2 FY2026: $81.3B (+17% YoY)',grossMargin:'68.1%',opMargin:'47%',eps_gaap:'$5.16 Q2',eps_nongaap:'$4.14 Q2',pe_trailing:'34x',pe_fwd:'28x',evEbitda:'24x',peg:'1.7',sbc_pct:'~5%',ev_fcf:'~62x',guidance:'Q3: $80.65–81.75B',signal:'fair',signalText:'Rättvist värderad',oneliner:'Säkraste AI-exponering, diversifierad. Azure +39%. Men gross margin 68.1% oroar — AI-infra kostar.',bull_fv_low:450,bull_fv_high:500,bear_fv_low:330,bear_fv_high:370,quarterly:[{q:'Q1',rev:76.4,eps:3.85},{q:'Q2',rev:81.3,eps:4.14},{q:'Q3e',rev:81.2,eps:0},{q:'Q4e',rev:0,eps:0}],earnings_summary:'<b>Q2 FY2026 (28 jan 2026):</b> Nadella: <span class="q">"beginning of AI diffusion."</span> Cloud >$50B/Q. Azure +39%. Copilot 15M. CapEx $37.5B. OBS: GAAP $5.16 inkl $7.6B OpenAI-vinst.',bull:['Azure +39% AI-acceleration','Copilot 15M — ARPU-expansion','Mest diversifierad i Mag 7','Enterprise stickiness','OpenAI AGI-optionalitet'],bear:['Gross margin 68.1% 3-årslägsta','CapEx ~$150B annualiserat','GAAP EPS missvisande (OpenAI)','Copilot adoption långsam','OpenAI-beroende-risk'],bull_fv:'$450–500',bear_fv:'$330–370',verdict:'ÖVERENS: Säkraste AI-exponering. DIVERGERAR: Margin — Victoria: leverage 2027+. Marcus: strukturell kompression.'},
+AMZN:{name:'Amazon',price:204,mktCap:'2.2T',fyLabel:'FY2025',rev:'716.9B',revGrowth:'+12%',qi:'Q4 2025: $213.4B (+14% YoY)',grossMargin:'~49%',opMargin:'11.2%',eps_gaap:'$1.95 Q4',eps_nongaap:'~$1.97',pe_trailing:'46x',pe_fwd:'28x',evEbitda:'20x',peg:'1.4',sbc_pct:'~6%',ev_fcf:'~175x',guidance:'Q1: $173.5–178.5B',signal:'fair',signalText:'Rättvist värderad',oneliner:'AWS +24% accelererar, backlog $244B. Men $200B CapEx 2026 = FCF-osäkerhet. FCF TTM bara $11.2B.',bull_fv_low:230,bull_fv_high:270,bear_fv_low:160,bear_fv_high:190,quarterly:[{q:'Q1',rev:172.2,eps:1.59},{q:'Q2',rev:176.6,eps:1.81},{q:'Q3',rev:181.7,eps:1.70},{q:'Q4',rev:213.4,eps:1.95}],earnings_summary:'<b>Q4 2025 (5 feb 2026):</b> Jassy: <span class="q">"invest $200B CapEx in 2026."</span> AWS +24% snabbast 13Q. Ads +23%. Aktien -8% pga CapEx-chock. Backlog $244B (+40%).',bull:['AWS +24%, backlog $244B (+40%)','Ads $21B/Q = dold kassako','750K+ robotar — automation','Trainium/Graviton custom silicon','$200B = generations-bet'],bear:['$200B CapEx vs $147B consensus','P/E 46x dyrt för 14% tillväxt','FCF kan bli negativ 2026','Retail-margins tunna','16K avskedanden Q4'],bull_fv:'$230–270',bear_fv:'$160–190',verdict:'ÖVERENS: AWS ohotad, backlog extraordinary. DIVERGERAR: CapEx — Victoria: 5–10 års payoff. Marcus: ROI-osäkerhet.'},
+TSLA:{name:'Tesla',price:397,mktCap:'1.3T',fyLabel:'FY2025',rev:'94.8B',revGrowth:'-3%',qi:'Q4 2025: $24.9B (-3% YoY)',grossMargin:'20.1% Q4',opMargin:'5.7%',eps_gaap:'$0.24 Q4',eps_nongaap:'$0.50 Q4',pe_trailing:'376x',pe_fwd:'~120x',evEbitda:'~90x',peg:'N/A',sbc_pct:'~5%',ev_fcf:'~210x',guidance:'Inget; Robotaxi fokus',signal:'speculative',signalText:'Spekulativ',oneliner:'Handlas på Robotaxi/Optimus-tro. Första revenue-decline EVER. GAAP EPS $0.24. Ren optionsposition.',bull_fv_low:500,bull_fv_high:700,bear_fv_low:120,bear_fv_high:180,quarterly:[{q:'Q1',rev:19.3,eps:0.12},{q:'Q2',rev:22.5,eps:0.33},{q:'Q3',rev:28.1,eps:0.38},{q:'Q4',rev:24.9,eps:0.24}],earnings_summary:'<b>Q4 2025 (28 jan 2026):</b> Första annual revenue-decline. FY $94.8B (-3%). Deliveries -8.6%. GAAP NI $3.8B (-50%). Energy +25%. OpEx +39% (AI R&D). Cash $44.1B. FCF $6.2B FY.',bull:['Robotaxi + FSD = trillion-dollar TAM','Optimus manufacturing-moat','Energy +25% accelererande','Cybercab cost/mile potential','Cash $44.1B överlevnad'],bear:['Första revenue-decline EVER','P/E 376x GAAP','$0.24 vs $0.50 = låg quality','Consumer boycott EU/US','OpMargin 5.7% för $1.3T'],bull_fv:'$500–700',bear_fv:'$120–180',verdict:'ÖVERENS: Handlas på tro, ej fundamentals. MAX DIVERGENS: Victoria: 10x om FSD. Marcus: -60-70% vid automotive-repricing.'},
+TSM:{name:'TSMC',price:193,mktCap:'1.0T',fyLabel:'FY2025',rev:'122.4B',revGrowth:'+35.9%',qi:'Q4 2025: $33.7B (+25.5% YoY)',grossMargin:'62.3% Q4',opMargin:'54.0%',eps_gaap:'$3.14/ADR Q4',eps_nongaap:'N/A (TIFRS)',pe_trailing:'25x',pe_fwd:'20x',evEbitda:'16x',peg:'~0.6',sbc_pct:'<1%',ev_fcf:'~32x',guidance:'Q1: $34.6–35.8B · GM 63–65%',signal:'attractive',signalText:'Attraktiv',oneliner:'AI-infrastrukturens ryggrad. PEG 0.6, GM 62.3%, renast rapportering. Taiwan-risk enda existentiella farhåga.',bull_fv_low:240,bull_fv_high:280,bear_fv_low:150,bear_fv_high:180,quarterly:[{q:'Q1',rev:25.8,eps:2.12},{q:'Q2',rev:28.9,eps:2.35},{q:'Q3',rev:33.1,eps:2.74},{q:'Q4',rev:33.7,eps:3.14}],earnings_summary:'<b>Q4 2025 (15 jan 2026):</b> AI-accelerator CAGR mid-to-high 30s% till 2029. Revenue $33.7B. 3nm 28%, 5nm 35%. GM 62.3%. CapEx $52–56B. N2P + A16. Arizona i produktion.',bull:['PEG ~0.6 billigast i gruppen','90%+ avancerade chips = oersättlig','AI-accelerator CAGR mid-30s 2029','GM 62.3% stigande — pricing power','SBC <1% renast rapportering'],bear:['Taiwan-risk existentiell','Apple+NVDA+AMD ~50% av revenue','CapEx $52–56B pressar FCF','Intel/Samsung konkurrensrisk','NTD/USD currency risk'],bull_fv:'$240–280',bear_fv:'$150–180',verdict:'ÖVERENS: AI-revolutionens ryggrad. DIVERGERAR: Taiwan — Marcus: oförsäkringsbar. Victoria: globala fabriker diversifierar.'}};
+
+const fintwit=[
+{handle:'@AswathDamodaran',name:'Aswath Damodaran',stance:'neutral',tier:'inst',tierLabel:'Akademisk',followers:'1.9M',note:'NYU Stern. Publicerar intrinsic value-estimat. Kritisk TSLA.',stocks:{GOOGL:'bull',TSLA:'bear',AAPL:'neutral',META:'bull'}},
+{handle:'@DanNiles',name:'Dan Niles',stance:'neutral',tier:'inst',tierLabel:'Hedge Fund',followers:'400K',note:'Satori Fund. Fokus estimate revisions.',stocks:{GOOGL:'bull',TSLA:'bear',NVDA:'neutral',AMZN:'bull'}},
+{handle:'@GaryCBlack',name:'Gary Black',stance:'neutral',tier:'inst',tierLabel:'Fd. CIO DWS',followers:'350K',note:'Bullish Robotaxi-tes men erkänner overvaluation.',stocks:{TSLA:'bull',META:'bull',NVDA:'neutral',AAPL:'bear'}},
+{handle:'@PeterMallouk',name:'Peter Mallouk',stance:'neutral',tier:'inst',tierLabel:'Creative Planning CEO',followers:'200K',note:'Diversifiera bortom Mag 7. Varnar herd.',stocks:{MSFT:'bull',AAPL:'neutral',NVDA:'neutral',TSLA:'bear'}},
+{handle:'@MacroAlf',name:'Alfonso Peccatiello',stance:'neutral',tier:'pro',tierLabel:'Macro Strategist',followers:'500K',note:'Räntepolicy vs tech-multiplar. Risk om 10Y >5%.',stocks:{NVDA:'neutral',GOOGL:'neutral',AMZN:'neutral',TSM:'neutral'}},
+{handle:'@NorthmanTrader',name:'Sven Henrich',stance:'bearish',tier:'pro',tierLabel:'Teknisk Analytiker',followers:'350K',note:'Varnar AI-multiplar, breadth-divergenser.',stocks:{NVDA:'bear',TSLA:'bear',META:'bear',GOOGL:'neutral'}},
+{handle:'@mark_melin',name:'Mark Melin',stance:'bearish',tier:'pro',tierLabel:'Quant/Risk',followers:'50K',note:'Concentration risk, AI CapEx-bubbla.',stocks:{NVDA:'bear',TSM:'bear',META:'bear',MSFT:'neutral'}},
+{handle:'@Jesse_Livermore',name:'Jesse Livermore',stance:'bearish',tier:'pro',tierLabel:'Macro Valuation',followers:'90K',note:'Mag 7 overowned, rotation-vulnerability.',stocks:{NVDA:'bear',AAPL:'bear',TSLA:'bear',GOOGL:'neutral'}},
+{handle:'@gaborit_luc',name:'Luc Gaborit',stance:'bullish',tier:'pro',tierLabel:'Semi-analytiker',followers:'30K',note:'Extremt bullish NVDA Blackwell. Ser $300+.',stocks:{NVDA:'bull',TSM:'bull',AMZN:'bull',MSFT:'neutral'}},
+{handle:'@BrianFeroldi',name:'Brian Feroldi',stance:'bullish',tier:'pro',tierLabel:'Educator/Analyst',followers:'570K',note:'Bullish GOOGL + META på värdering.',stocks:{GOOGL:'bull',META:'bull',MSFT:'bull',TSLA:'bear'}},
+{handle:'@saxena_puru',name:'Puru Saxena',stance:'bullish',tier:'pro',tierLabel:'Fund Manager',followers:'250K',note:'Extremt bullish AI. NVDA/META/GOOGL core.',stocks:{NVDA:'bull',META:'bull',GOOGL:'bull',TSM:'bull'}},
+{handle:'@FundamentEdge',name:'Fundament Edge',stance:'neutral',tier:'pro',tierLabel:'DCF-analytiker',followers:'20K',note:'Flaggar TSLA disconnect. Bullish GOOGL P/E.',stocks:{GOOGL:'bull',TSLA:'bear',META:'neutral',NVDA:'neutral'}},
+{handle:'@borrowed_ideas',name:'Borrowed Ideas',stance:'bullish',tier:'pro',tierLabel:'Deep Dive Research',followers:'150K',note:'Bull AMZN: ads + AWS synergier.',stocks:{AMZN:'bull',GOOGL:'bull',META:'bull',NVDA:'neutral'}},
+{handle:'@FromValue',name:'From Value',stance:'bullish',tier:'pro',tierLabel:'Digital Ads Analyst',followers:'40K',note:'META AI-targeting = game-changer.',stocks:{META:'bull',GOOGL:'bull',AMZN:'bull',AAPL:'neutral'}},
+{handle:'@TheLongInvest',name:'The Long Investor',stance:'bullish',tier:'pro',tierLabel:'Teknisk/Fundamental Analytiker',followers:'200K',note:'Airline captain + analytiker. Publicerar 450+ charts/mån. Bullish long-term equities, teknisk + fundamental.',stocks:{NVDA:'bull',GOOGL:'bull',META:'bull',AAPL:'bull'}},
+{handle:'@chaaborsi',name:'Chad Borsari',stance:'bullish',tier:'comm',tierLabel:'Earnings Analyst',followers:'50K',note:'Pekade korrekt på AWS-acceleration.',stocks:{AMZN:'bull',NVDA:'bull',META:'bull',MSFT:'bull'}},
+{handle:'@TechBroLLC',name:'TechBro',stance:'bullish',tier:'comm',tierLabel:'Tech Kommentator',followers:'100K',note:'NVDA/TSM primära AI-beneficiaries.',stocks:{NVDA:'bull',TSM:'bull',META:'bull',GOOGL:'bull'}},
+{handle:'@MichaelMOTTCM',name:'Michael Mott',stance:'bullish',tier:'comm',tierLabel:'Charts/Flows',followers:'80K',note:'Institutionell ackumulation NVDA/META.',stocks:{NVDA:'bull',META:'bull',TSM:'neutral',MSFT:'neutral'}},
+{handle:'@StockMKTNewz',name:'Stock/Market News',stance:'neutral',tier:'comm',tierLabel:'News Aggregator',followers:'500K',note:'Snabba sammanfattningar, raw data.',stocks:{NVDA:'neutral',GOOGL:'neutral',META:'neutral',AMZN:'neutral'}},
+{handle:'@WallStJesus',name:'Wall St. Jesus',stance:'bullish',tier:'comm',tierLabel:'Options Flow',followers:'200K',note:'Stora NVDA call-positioner pre-earnings.',stocks:{NVDA:'bull',META:'bull',TSM:'bull',AMZN:'neutral'}},
+{handle:'@Jay_S_Kapoor',name:'Jay Kapoor',stance:'bullish',tier:'comm',tierLabel:'VC/AI Investor',followers:'30K',note:'Enterprise AI = multi-year secular.',stocks:{NVDA:'bull',MSFT:'bull',GOOGL:'bull',AMZN:'bull'}}
+];
+
+const signalColors={attractive:'var(--grn)',fair:'var(--gld)',speculative:'var(--prp)'};
+
+// ===== WEEKLY CHANGELOG DATA =====
+// Update prevWeek with CURRENT data before refreshing D with new data each Monday
+const META_DATA = {
+  currentDate: '17 mars 2026',
+  prevDate: null, // Set to previous Monday's date on second run, e.g. '10 mars 2026'
+  weekNumber: 1
+};
+
+// Previous week snapshot — REPLACE these values each Monday before updating D
+// On first run, prevWeek is null (no comparison). On week 2+, paste last week's prices here.
+const prevWeek = null;
+/* TEMPLATE for week 2+:
+const prevWeek = {
+  date: '17 mars 2026',
+  NVDA:{price:190,pe_fwd:'24.2x',signal:'attractive',revGrowth:'+65%',ev_fcf:'~47x'},
+  AAPL:{price:237,pe_fwd:'30.5x',signal:'fair',revGrowth:'+6.4%',ev_fcf:'~35x'},
+  GOOGL:{price:331,pe_fwd:'20x',signal:'attractive',revGrowth:'+18%',ev_fcf:'~28x'},
+  META:{price:669,pe_fwd:'22x',signal:'attractive',revGrowth:'+22%',ev_fcf:'~33x'},
+  MSFT:{price:405,pe_fwd:'28x',signal:'fair',revGrowth:'+17%',ev_fcf:'~62x'},
+  AMZN:{price:204,pe_fwd:'28x',signal:'fair',revGrowth:'+12%',ev_fcf:'~175x'},
+  TSLA:{price:397,pe_fwd:'~120x',signal:'speculative',revGrowth:'-3%',ev_fcf:'~210x'},
+  TSM:{price:193,pe_fwd:'20x',signal:'attractive',revGrowth:'+35.9%',ev_fcf:'~32x'}
+};
+*/
+
+const navEl=document.getElementById('nav');
+const tickers=Object.keys(D);
+
+navEl.innerHTML=`<div class="nav-tab active" data-tab="OVERVIEW" style="color:var(--cyan)">◉ Översikt</div>`;
+tickers.forEach((t,i)=>{const dot=`<span class="nav-dot" style="background:${signalColors[D[t].signal]}"></span>`;navEl.innerHTML+=`<div class="nav-tab" data-tab="${t}">${dot}${t}</div>`;});
+navEl.innerHTML+=`<div class="nav-tab special" data-tab="COMPARE"><span class="nav-dot" style="background:var(--gld)"></span>Jämför</div><div class="nav-tab special" data-tab="FINTWIT">𝕏 FinTwit</div><div class="nav-tab portfolio" data-tab="PORTFOLIO">💼 Portföljer</div>`;
+navEl.innerHTML+=`<div class="nav-tab" data-tab="CHANGELOG" style="color:var(--cyan)">△ Förändringar</div>`;
+
+function renderGauge(c){const vals=[c.bear_fv_low,c.bear_fv_high,c.bull_fv_low,c.bull_fv_high,c.price];const mn=Math.min(...vals)*.85,mx=Math.max(...vals)*1.1,rng=mx-mn;const p=v=>Math.max(0,Math.min(100,((v-mn)/rng)*100));return`<div class="fv-gauge"><h4>Fair Value vs Pris</h4><div class="fv-track"><div class="fv-marker" style="left:${p((c.bear_fv_low+c.bear_fv_high)/2)}%;background:var(--red);opacity:.4"></div><div class="fv-marker" style="left:${p((c.bull_fv_low+c.bull_fv_high)/2)}%;background:var(--grn);opacity:.4"></div><div class="fv-marker" style="left:${p(c.price)}%;background:var(--t1)" data-label="$${c.price} NU"></div></div><div class="fv-labels"><span class="bear-l">🔴 $${c.bear_fv_low}–${c.bear_fv_high}</span><span style="color:var(--t3);font-size:10px">Bear · Bull</span><span class="bull-l">🟢 $${c.bull_fv_low}–${c.bull_fv_high}</span></div></div>`;}
+
+function renderCompanyTab(t){const c=D[t];const bc={attractive:'verdict-attractive',fair:'verdict-fair',speculative:'verdict-speculative'}[c.signal];return`
+<div class="hero"><div class="hero-signal"><div class="ticker-row"><span class="ticker">${t}</span><span class="verdict-badge ${bc}">${c.signalText}</span></div><div class="company-name">${c.name} · ${c.fyLabel} · $${c.mktCap}</div><div class="hero-oneliner">${c.oneliner}</div></div>${renderGauge(c)}</div>
+<div class="kpi-grid"><div class="kpi"><div class="kpi-label">Pris</div><div class="kpi-val">$${c.price}</div></div><div class="kpi"><div class="kpi-label">Revenue</div><div class="kpi-val kpi-grn">${c.rev}</div><div class="kpi-sub kpi-grn">${c.revGrowth}</div></div><div class="kpi"><div class="kpi-label">Fwd P/E</div><div class="kpi-val">${c.pe_fwd}</div><div class="kpi-sub" style="color:var(--t3)">Trail: ${c.pe_trailing}</div></div><div class="kpi"><div class="kpi-label">PEG</div><div class="kpi-val" style="color:${parseFloat(c.peg)<1?'var(--grn)':parseFloat(c.peg)<2?'var(--gld)':'var(--red)'}">${c.peg}</div></div><div class="kpi"><div class="kpi-label">Gross M</div><div class="kpi-val">${c.grossMargin}</div><div class="kpi-sub" style="color:var(--t3)">Op: ${c.opMargin}</div></div><div class="kpi"><div class="kpi-label">EPS</div><div class="kpi-val">${c.eps_gaap}</div><div class="kpi-sub" style="color:var(--t3)">${c.eps_nongaap}</div></div><div class="kpi"><div class="kpi-label">EV/FCF</div><div class="kpi-val" style="color:${parseFloat(c.ev_fcf)<35?'var(--grn)':parseFloat(c.ev_fcf)<50?'var(--gld)':'var(--red)'}">${c.ev_fcf}</div><div class="kpi-sub" style="color:var(--t3)">SBC: ${c.sbc_pct}</div></div><div class="kpi"><div class="kpi-label">Guidance</div><div class="kpi-val" style="font-size:.7rem;font-weight:500">${c.guidance}</div></div></div>
+<div class="section"><div class="section-title">🟢🔴 Bull vs Bear</div><div class="bb-grid"><div class="bb-card bull"><h3>🟢 Victoria · <span style="color:var(--grn)">${c.bull_fv}</span></h3><ul>${c.bull.map(b=>`<li>✓ ${b}</li>`).join('')}</ul></div><div class="bb-card bear"><h3>🔴 Marcus · <span style="color:var(--red)">${c.bear_fv}</span></h3><ul>${c.bear.map(b=>`<li>✗ ${b}</li>`).join('')}</ul></div></div><div class="verdict"><h3>⚖️ Verdict</h3><p style="font-size:12px;color:var(--t2);line-height:1.7">${c.verdict}</p></div></div>
+<div class="section"><div class="section-title">📞 Earnings Call</div><div class="ec-summary">${c.earnings_summary}</div></div>
+<div class="section"><div class="section-title">📊 Kvartalsdata</div><div class="tbl-wrap"><table class="tbl"><tr><th>Q</th><th>Rev ($B)</th><th>EPS</th><th>Trend</th></tr>${c.quarterly.map((q,i)=>{const prev=i>0?c.quarterly[i-1].rev:q.rev;const chg=((q.rev-prev)/prev*100).toFixed(1);const bar=Math.min(q.rev/Math.max(...c.quarterly.map(x=>x.rev))*100,100);return`<tr><td style="color:var(--t2);font-family:'DM Sans'">${q.q}</td><td>$${q.rev.toFixed(1)}</td><td>${q.eps>0?'$'+q.eps.toFixed(2):'—'}</td><td><div style="display:flex;align-items:center;gap:6px"><div style="width:${bar}%;height:8px;background:${parseFloat(chg)>=0?'var(--grn)':'var(--red)'};border-radius:4px;min-width:4px"></div><span style="font-size:10px;font-weight:600;color:${parseFloat(chg)>=0?'var(--grn)':'var(--red)'}">${chg>0?'+':''}${chg}%</span></div></td></tr>`;}).join('')}</table></div></div>`;}
+
+function renderCompare(){const sorted=tickers.map(t=>({t,...D[t],fwdNum:parseFloat(D[t].pe_fwd)})).sort((a,b)=>a.fwdNum-b.fwdNum);return`
+<div class="section"><div class="section-title">⚡ Snabbvy — Klicka för att navigera</div><div class="compare-signals">${tickers.map(t=>{const c=D[t];const col=signalColors[c.signal];return`<div class="cs-card" style="border-color:${col}" onclick="setActiveTab('${t}')"><div class="cs-ticker">${t}</div><div class="cs-fwd">Fwd P/E: ${c.pe_fwd}</div><div style="font-size:11px;color:${c.revGrowth.includes('-')?'var(--red)':'var(--grn)'}">${c.revGrowth}</div><div style="font-size:10px;margin-top:3px;color:${col};font-weight:700">${c.signalText}</div></div>`;}).join('')}</div></div>
+<div class="section"><div class="section-title">📊 Jämförelse (Fwd P/E sorterad)</div><div class="tbl-wrap"><table class="tbl"><tr><th>Ticker</th><th>Signal</th><th>Pris</th><th>Growth</th><th>Fwd P/E</th><th>PEG</th><th>EV/FCF</th><th>GM</th><th>OpM</th></tr>${sorted.map(r=>{const col=signalColors[r.signal];const evfcfNum=parseFloat(r.ev_fcf);const evfcfCol=evfcfNum<35?'var(--grn)':evfcfNum<50?'var(--gld)':'var(--red)';return`<tr><td style="font-weight:700;font-family:'DM Sans'">${r.t}</td><td><span style="color:${col};font-weight:700;font-size:10px">${r.signalText}</span></td><td>$${r.price}</td><td class="${r.revGrowth.includes('-')?'heat-bad':'heat-good'}" style="font-weight:600">${r.revGrowth}</td><td style="font-weight:700">${r.pe_fwd}</td><td style="color:${parseFloat(r.peg)<1?'var(--grn)':parseFloat(r.peg)<2?'var(--gld)':'var(--red)'};font-weight:600">${r.peg}</td><td style="color:${evfcfCol};font-weight:600">${r.ev_fcf}</td><td>${r.grossMargin}</td><td>${r.opMargin}</td></tr>`;}).join('')}</table></div></div>
+<div class="section"><div class="section-title">🏆 Rankingar</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px">${[{t:'Bäst Fwd P/E',c:'var(--grn)',i:'🥇 TSM 20x · 🥈 GOOGL 20x · 🥉 META 22x'},{t:'Starkast Tillväxt',c:'var(--blu)',i:'🥇 NVDA +65% · 🥈 TSM +35.9% · 🥉 META +22%'},{t:'Bäst PEG',c:'var(--gld)',i:'🥇 NVDA 0.59 · 🥈 TSM 0.6 · 🥉 META 1.05'},{t:'Bäst EV/FCF',c:'var(--prp)',i:'🥇 GOOGL ~28x · 🥈 TSM ~32x · 🥉 META ~33x'}].map(r=>`<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius-sm);padding:12px"><h4 style="color:${r.c};font-size:11px;margin-bottom:6px">${r.t}</h4><div style="font-size:11px;color:var(--t2);line-height:1.8">${r.i.split(' · ').join('<br>')}</div></div>`).join('')}</div></div>
+<div class="section"><div class="section-title">💡 Nyckelinsikter</div><div style="background:var(--bg4);border:1px solid var(--brd2);border-radius:var(--radius);padding:16px;font-size:12px;color:var(--t2);line-height:1.8"><p><b style="color:var(--gld)">AI CapEx-krig:</b> GOOGL $175–185B + AMZN $200B + META $115–135B + MSFT ~$150B = >$640B. NVDA/TSM mottagare.</p><br><p><b style="color:var(--red)">Värderingsklyfta:</b> TSLA 376x med -3% tillväxt vs GOOGL 22x med +18%.</p><br><p><b style="color:var(--blu)">GAAP-varning:</b> TSLA ($0.24/$0.50), MSFT ($5.16/$4.14 OpenAI), META (SBC 10%). TSM+AAPL renast.</p></div></div>`;}
+
+function renderFintwit(){
+const b=fintwit.filter(f=>f.stance==='bullish').length,n=fintwit.filter(f=>f.stance==='neutral').length,br=fintwit.filter(f=>f.stance==='bearish').length;
+const tkrs=['NVDA','GOOGL','META','TSM','MSFT','AMZN','AAPL','TSLA'];
+const tkColors={NVDA:'#22c55e',TSM:'#06b6d4',META:'#3b82f6',GOOGL:'#eab308',AMZN:'#f97316',MSFT:'#a855f7',AAPL:'#94a3b8',TSLA:'#ef4444'};
+
+function stockSentiment(tk){let bu=0,ne=0,be=0;fintwit.forEach(f=>{if(f.stocks[tk]==='bull')bu++;else if(f.stocks[tk]==='bear')be++;else if(f.stocks[tk]==='neutral')ne++;});return{bu,ne,be,total:bu+ne+be};}
+
+const tiers=[
+{id:'inst',label:'🏛 Institutionell / Akademisk',desc:'Hedge fund managers, CIO:s, professorer med verifierbar track record'},
+{id:'pro',label:'📊 Professionella Analytiker',desc:'Oberoende analytiker, fund managers, strateger med djup specialisering'},
+{id:'comm',label:'💬 Kommentatorer & Flow-analytiker',desc:'Earnings-trackers, options flow, sentiment-aggregatorer'}
+];
+const stIcon={bull:'🟢',bear:'🔴',neutral:'🟡'};
+const stCol={bull:'var(--grn)',bear:'var(--red)',neutral:'var(--gld)'};
+
+const tot=fintwit.length;
+return`
+<div class="section"><div class="section-title">𝕏 FinTwit Sentiment — ${tot} Profiler</div>
+
+<!-- OVERALL AGGREGATE -->
+<div class="ft-agg"><div class="ft-agg-legend"><span><span class="dot" style="background:var(--grn)"></span>Bull ${b}</span><span><span class="dot" style="background:var(--gld)"></span>Neutral ${n}</span><span><span class="dot" style="background:var(--red)"></span>Bear ${br}</span></div><div class="ft-agg-bar"><div class="ft-agg-seg" style="width:${b/tot*100}%;background:var(--grn)"></div><div class="ft-agg-seg" style="width:${n/tot*100}%;background:var(--gld)"></div><div class="ft-agg-seg" style="width:${br/tot*100}%;background:var(--red)"></div></div></div>
+
+<!-- PER-STOCK SENTIMENT — the key innovation -->
+<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:16px;margin-bottom:16px">
+<h4 style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px">Sentiment per bolag bland ${tot} profiler</h4>
+${tkrs.map(tk=>{const s=stockSentiment(tk);if(s.total===0)return'';const tot=s.total;return`<div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;width:48px;color:${tkColors[tk]}" onclick="setActiveTab('${tk}')" style="cursor:pointer">${tk}</span>
+<div style="flex:1;display:flex;height:14px;border-radius:7px;overflow:hidden;gap:1px">
+${s.bu>0?`<div style="flex:${s.bu};background:var(--grn);border-radius:4px"></div>`:''}
+${s.ne>0?`<div style="flex:${s.ne};background:var(--gld);border-radius:4px;opacity:.7"></div>`:''}
+${s.be>0?`<div style="flex:${s.be};background:var(--red);border-radius:4px"></div>`:''}
+</div>
+<div style="display:flex;gap:6px;font-family:'JetBrains Mono',monospace;font-size:10px;min-width:90px;justify-content:flex-end">
+<span style="color:var(--grn)">${s.bu}</span><span style="color:var(--t3)">/</span>
+<span style="color:var(--gld)">${s.ne}</span><span style="color:var(--t3)">/</span>
+<span style="color:var(--red)">${s.be}</span>
+</div>
+</div>`;}).join('')}
+<div style="margin-top:8px;font-size:10px;color:var(--t3)">Antal profiler som uttryckt vy: 🟢 bull / 🟡 neutral / 🔴 bear. Ej alla profiler täcker alla bolag.</div>
+</div>
+
+<!-- KEY NARRATIVE -->
+<div class="ft-narr" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+<div style="background:var(--grn-bg);border:1px solid rgba(34,197,94,.2);border-radius:var(--radius);padding:14px">
+<div style="font-size:12px;font-weight:700;color:var(--grn);margin-bottom:6px">🟢 Bull-narrativ</div>
+<div style="font-size:11.5px;color:var(--t2);line-height:1.6">AI CapEx är <b>secular, inte cyklisk</b>. NVDA/TSM oersättliga. GOOGL + META mest undervärderade AI-exponering. Inference-TAM öppnar ny S-kurva.</div>
+</div>
+<div style="background:var(--gld-bg);border:1px solid rgba(234,179,8,.2);border-radius:var(--radius);padding:14px">
+<div style="font-size:12px;font-weight:700;color:var(--gld);margin-bottom:6px">🟡 Selektiv-narrativ</div>
+<div style="font-size:11.5px;color:var(--t2);line-height:1.6">GOOGL/META > TSLA/AAPL på risk/reward. Väntar på <b>ROI-bevis</b> från AI-investeringar. Ränterisken underskattas. Köp kvalitet, sälj hype.</div>
+</div>
+<div style="background:var(--red-bg);border:1px solid rgba(239,68,68,.2);border-radius:var(--radius);padding:14px">
+<div style="font-size:12px;font-weight:700;color:var(--red);margin-bottom:6px">🔴 Bear-narrativ</div>
+<div style="font-size:11.5px;color:var(--t2);line-height:1.6">Historisk <b>concentration risk</b>. Mag 7 overowned av passiva fonder. CapEx-bubbla om AI-ROI fördröjs. Breadth-divergenser = varningssignal.</div>
+</div>
+</div>
+
+<!-- TIERED PROFILES -->
+${tiers.map(tier=>{const profiles=fintwit.filter(f=>f.tier===tier.id);return`
+<div style="margin-bottom:14px">
+<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:13px;font-weight:700;color:var(--t1)">${tier.label}</span><span style="font-size:10px;color:var(--t3)">${tier.desc}</span></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px">
+${profiles.map(f=>{
+const stockTags=Object.entries(f.stocks).map(([tk,st])=>`<span style="font-size:9px;padding:1px 5px;border-radius:8px;background:${st==='bull'?'var(--grn-bg)':st==='bear'?'var(--red-bg)':'var(--gld-bg)'};color:${stCol[st]};font-weight:600">${tk} ${stIcon[st]}</span>`).join(' ');
+return`<div class="ft-card" style="border-left:2px solid ${stCol[f.stance]}">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><span style="font-weight:700;color:var(--t1);font-size:12px">${f.name}</span><span class="stance ${f.stance}">${f.stance.toUpperCase()}</span></div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:10px;color:var(--blu)">${f.handle} · ${f.tierLabel}</span><span style="font-size:9.5px;color:var(--t3);font-family:'JetBrains Mono',monospace">👥 ${f.followers}</span></div>
+<div style="margin-bottom:4px">${f.note}</div>
+<div style="display:flex;gap:4px;flex-wrap:wrap">${stockTags}</div>
+</div>`;}).join('')}
+</div></div>`;}).join('')}
+</div>`;}
+
+
+function renderPortfolio(){const colors={NVDA:'#22c55e',TSM:'#06b6d4',META:'#3b82f6',GOOGL:'#eab308',AMZN:'#f97316',MSFT:'#a855f7',AAPL:'#94a3b8',TSLA:'#ef4444'};
+const ab=a=>a.filter(x=>x.pct>0).map(x=>`<div class="alloc-seg" style="flex:${x.pct};background:${colors[x.ticker]}">${x.ticker} ${x.pct}%</div>`).join('');
+const P=[{n:'Alpha',l:'📈 Growth Momentum',c:'var(--grn)',pm:'Karin Lindström',ph:'Momentum · 6–12 mån',a:[{ticker:'NVDA',pct:25},{ticker:'TSM',pct:20},{ticker:'META',pct:18},{ticker:'GOOGL',pct:15},{ticker:'AMZN',pct:12},{ticker:'MSFT',pct:10},{ticker:'AAPL',pct:0},{ticker:'TSLA',pct:0}],r:'Övervik NVDA/TSM AI-infra. META/GOOGL undervärderade. Noll TSLA + AAPL.',k:'65% AI CapEx-exponering. Peakrisk. Taiwan. Ingen defensiv.'},
+{n:'Beta',l:'⚖️ Quality GARP',c:'var(--blu)',pm:'Erik Sandberg',ph:'GARP · 12–24 mån',a:[{ticker:'NVDA',pct:14},{ticker:'TSM',pct:12},{ticker:'META',pct:18},{ticker:'GOOGL',pct:22},{ticker:'AMZN',pct:10},{ticker:'MSFT',pct:16},{ticker:'AAPL',pct:8},{ticker:'TSLA',pct:0}],r:'GOOGL bäst risk/reward. META GM 82%. MSFT stabilisator. Undervikt NVDA. Noll TSLA.',k:'GOOGL antitrust. META CapEx. MSFT margin. 100% tech.'},
+{n:'Gamma',l:'🛡️ Barbell',c:'var(--prp)',pm:'Anna Holm',ph:'Kärna + optionalitet · 24–36 mån',a:[{ticker:'NVDA',pct:12},{ticker:'TSM',pct:10},{ticker:'META',pct:12},{ticker:'GOOGL',pct:18},{ticker:'AMZN',pct:8},{ticker:'MSFT',pct:22},{ticker:'AAPL',pct:15},{ticker:'TSLA',pct:3}],r:'MSFT kärna. GOOGL+AAPL stabilisatorer. TSLA 3% call option. Bred viktning.',k:'Spridd = lägre upside. AAPL PEG drar ned. MSFT margin.'}];
+const avg=[{t:'GOOGL',p:18},{t:'NVDA',p:17},{t:'MSFT',p:16},{t:'META',p:16},{t:'TSM',p:14},{t:'AMZN',p:10},{t:'AAPL',p:8},{t:'TSLA',p:1}];
+return`<div class="section"><div class="section-title">💼 Tre Blinda Portföljer</div><p style="font-size:11px;color:var(--t3);margin-bottom:16px">Tre PM:s, olika filosofier, oberoende allokering.</p></div>
+${P.map(p=>`<div class="port-card" style="border-left:3px solid ${p.c}"><h3 style="color:${p.c}">${p.l}</h3><div class="subtitle">${p.pm} · ${p.ph}</div><div class="alloc-bar">${ab(p.a)}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;font-size:11.5px;color:var(--t2);line-height:1.6"><div><b style="color:var(--t1)">Rationale:</b> ${p.r}</div><div><b style="color:var(--t1)">Risker:</b> ${p.k}</div></div></div>`).join('')}
+
+<div style="background:var(--bg3);border:2px solid var(--brd2);border-radius:var(--radius);padding:24px;margin-top:20px">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px">
+<h3 style="font-size:16px;color:var(--t1);font-family:'Instrument Serif',serif;font-weight:400">Genomsnittlig Optimal Allokering</h3>
+<span style="font-size:10px;color:var(--t3)">Snitt av Alpha · Beta · Gamma</span>
+</div>
+
+<div style="display:flex;height:48px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:16px">
+${avg.map(a=>`<div style="flex:${a.p};background:${colors[a.t]};display:flex;align-items:center;justify-content:center;font-size:${a.p>5?'11':'9'}px;font-weight:700;color:#fff;border-radius:4px;min-width:0">${a.p>3?a.t+' '+a.p+'%':''}</div>`).join('')}
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;padding-top:14px;border-top:1px solid var(--brd)">
+<div style="font-size:12px;color:var(--t2);line-height:1.8"><b style="color:var(--grn)">ALLA TRE ÖVERENS:</b><br>• GOOGL bör vara topp-3 (15–22%)<br>• META förtjänar signifikant vikt (12–18%)<br>• TSLA max 3% eller 0%</div>
+<div style="font-size:12px;color:var(--t2);line-height:1.8"><b style="color:var(--red)">STÖRSTA DIVERGENS:</b><br>• NVDA: Alpha 25% vs Gamma 12%<br>• AAPL: Alpha 0% vs Gamma 15%<br>• MSFT: Alpha 10% vs Gamma 22%</div>
+</div>
+</div>`;}
+
+
+function renderChangelog(){
+const tkColors={NVDA:'#22c55e',TSM:'#06b6d4',META:'#3b82f6',GOOGL:'#eab308',AMZN:'#f97316',MSFT:'#a855f7',AAPL:'#94a3b8',TSLA:'#ef4444'};
+
+if(!prevWeek){return`
+<div class="section">
+<div class="section-title">△ Veckoförändringar</div>
+<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:24px;text-align:center">
+<div style="font-size:40px;margin-bottom:12px">📋</div>
+<div style="font-family:'Instrument Serif',serif;font-size:1.3rem;color:var(--t1);margin-bottom:8px">Första körningen — ${META_DATA.currentDate}</div>
+<div style="font-size:13px;color:var(--t2);line-height:1.7;max-width:500px;margin:0 auto">
+Ingen historik att jämföra mot ännu. Nästa måndag skapas en jämförelsevy som visar prisrörelser, signalbyten, multipelförändringar och nya earnings automatiskt.<br><br>
+<b style="color:var(--t3)">Snapshot för nästa veckas jämförelse sparad nedan ↓</b>
+</div>
+</div>
+</div>
+
+<div class="section" style="margin-top:20px">
+<div class="section-title">📸 Denna Veckas Snapshot</div>
+<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:16px;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:2;color:var(--t2)">
+<div style="font-size:10px;color:var(--t3);margin-bottom:8px;font-family:'DM Sans'">Kopiera detta block till prevWeek-variabeln vid nästa uppdatering:</div>
+<div style="background:var(--bg);padding:12px;border-radius:var(--radius-sm);overflow-x:auto;white-space:pre">const prevWeek = {
+  date: '${META_DATA.currentDate}',
+${tickers.map(t=>{const c=D[t];return`  ${t}:{price:${c.price},pe_fwd:'${c.pe_fwd}',signal:'${c.signal}',revGrowth:'${c.revGrowth}',ev_fcf:'${c.ev_fcf}'}`;}).join(',\n')}
+};</div>
+</div>
+</div>`;}
+
+// ===== WEEK 2+ : Show actual changes =====
+const changes=[];
+tickers.forEach(t=>{
+  const cur=D[t], prev=prevWeek[t];
+  if(!prev)return;
+  const priceDelta=cur.price-prev.price;
+  const pricePct=((priceDelta/prev.price)*100).toFixed(1);
+  const signalChanged=cur.signal!==prev.signal;
+  const fwdChanged=cur.pe_fwd!==prev.pe_fwd;
+  const evfcfChanged=cur.ev_fcf!==prev.ev_fcf;
+  const impact=Math.abs(parseFloat(pricePct))+(signalChanged?10:0);
+  
+  changes.push({t,cur,prev,priceDelta,pricePct:parseFloat(pricePct),signalChanged,fwdChanged,evfcfChanged,impact});
+});
+changes.sort((a,b)=>b.impact-a.impact);
+
+const sigLabels={attractive:'Attraktiv',fair:'Rättvist',speculative:'Spekulativ'};
+
+return`
+<div class="section">
+<div class="section-title">△ Veckoförändringar</div>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+<div style="font-size:13px;color:var(--t2)">${META_DATA.currentDate} vs ${prevWeek.date}</div>
+<div style="font-size:11px;color:var(--t3)">Sorterat på störst påverkan</div>
+</div>
+
+<!-- SIGNAL CHANGES (if any) — most important -->
+${changes.filter(c=>c.signalChanged).length>0?`
+<div style="background:var(--gld-bg);border:1px solid rgba(234,179,8,.25);border-radius:var(--radius);padding:16px;margin-bottom:16px">
+<h4 style="font-size:12px;color:var(--gld);margin-bottom:10px">⚡ Signalbyten denna vecka</h4>
+${changes.filter(c=>c.signalChanged).map(c=>`
+<div style="display:flex;align-items:center;gap:10px;padding:6px 0;font-size:13px">
+<span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:${tkColors[c.t]};width:48px">${c.t}</span>
+<span style="color:${signalColors[c.prev.signal]};font-weight:600">${sigLabels[c.prev.signal]}</span>
+<span style="color:var(--t3)">→</span>
+<span style="color:${signalColors[c.cur.signal]};font-weight:700">${sigLabels[c.cur.signal]}</span>
+</div>`).join('')}
+</div>`:''}
+
+<!-- BIGGEST MOVERS -->
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-bottom:20px">
+${changes.map(c=>{
+  const up=c.pricePct>=0;
+  const col=up?'var(--grn)':'var(--red)';
+  const bg=up?'var(--grn-bg)':'var(--red-bg)';
+  const arrow=up?'▲':'▼';
+  return`<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:16px;cursor:pointer;border-left:3px solid ${col}" onclick="setActiveTab('${c.t}')">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+  <span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:${tkColors[c.t]}">${c.t}</span>
+  <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;color:${col}">${arrow} ${up?'+':''}${c.pricePct}%</span>
+</div>
+<div style="display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);margin-bottom:6px">
+  <span>$${c.prev.price} → $${c.cur.price}</span>
+  <span style="color:${col}">${up?'+':''}$${c.priceDelta.toFixed(0)}</span>
+</div>
+<div style="font-size:11px;color:var(--t2);line-height:1.6">
+${c.fwdChanged?`<div>Fwd P/E: ${c.prev.pe_fwd} → <b>${c.cur.pe_fwd}</b></div>`:''}
+${c.evfcfChanged?`<div>EV/FCF: ${c.prev.ev_fcf} → <b>${c.cur.ev_fcf}</b></div>`:''}
+${c.signalChanged?`<div style="color:var(--gld);font-weight:600">Signal: ${sigLabels[c.prev.signal]} → ${sigLabels[c.cur.signal]}</div>`:`<div style="color:var(--t3)">Signal: ${sigLabels[c.cur.signal]} (oförändrad)</div>`}
+</div>
+</div>`;}).join('')}
+</div>
+
+<!-- THIS WEEK'S SNAPSHOT -->
+<div class="section">
+<div class="section-title">📸 Snapshot för nästa vecka</div>
+<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:14px;font-family:'JetBrains Mono',monospace;font-size:10.5px;line-height:1.8;color:var(--t2)">
+<div style="background:var(--bg);padding:10px;border-radius:var(--radius-sm);overflow-x:auto;white-space:pre">const prevWeek = {
+  date: '${META_DATA.currentDate}',
+${tickers.map(t=>{const c=D[t];return`  ${t}:{price:${c.price},pe_fwd:'${c.pe_fwd}',signal:'${c.signal}',revGrowth:'${c.revGrowth}',ev_fcf:'${c.ev_fcf}'}`;}).join(',\n')}
+};</div>
+</div>
+</div>
+`;}
+
+
+function renderOverview(){
+const tkColors={NVDA:'#22c55e',TSM:'#06b6d4',META:'#3b82f6',GOOGL:'#eab308',AMZN:'#f97316',MSFT:'#a855f7',AAPL:'#94a3b8',TSLA:'#ef4444'};
+const avg=[{t:'GOOGL',p:18},{t:'NVDA',p:17},{t:'MSFT',p:16},{t:'META',p:16},{t:'TSM',p:14},{t:'AMZN',p:10},{t:'AAPL',p:8},{t:'TSLA',p:1}];
+const totalMktCap='~$20T';
+const bulls=fintwit.filter(f=>f.stance==='bullish').length;
+const bears=fintwit.filter(f=>f.stance==='bearish').length;
+
+return`
+<!-- EXECUTIVE SUMMARY HERO -->
+<div style="background:linear-gradient(135deg,var(--bg3),var(--bg4));border:1px solid var(--brd2);border-radius:var(--radius);padding:24px;margin-bottom:20px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:16px">
+<div>
+<div style="font-family:'Instrument Serif',serif;font-size:1.4rem;color:var(--t1);margin-bottom:4px">Executive Summary</div>
+<div style="font-size:12px;color:var(--t3)">8 bolag · Q4/FY 2025 data · 8 agenter · 21 FinTwit-profiler · 3 portföljanalyser</div>
+</div>
+<div style="text-align:right">
+<div style="font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--t1)">Total Mkt Cap: ${totalMktCap}</div>
+<div style="font-size:11px;color:var(--t3)">FinTwit: ${bulls} bulls · ${bears} bears</div>
+</div>
+</div>
+
+<!-- SIGNAL STRIP -->
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+${tickers.map(t=>{const c=D[t];const col=signalColors[c.signal];
+return`<div onclick="setActiveTab('${t}')" style="cursor:pointer;display:flex;align-items:center;gap:5px;padding:6px 12px;background:var(--bg);border:1px solid var(--brd);border-radius:20px;transition:all .15s" onmouseover="this.style.borderColor='${col}'" onmouseout="this.style.borderColor='var(--brd)'">
+<span style="width:7px;height:7px;border-radius:50%;background:${col}"></span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">${t}</span>
+<span style="font-size:10px;color:var(--t3)">${c.pe_fwd}</span>
+</div>`;}).join('')}
+</div>
+</div>
+
+<!-- TWO COLUMN: KEY FINDINGS + ALLOCATION -->
+<div class="ov-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:20px">
+<h3 style="font-size:13px;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">🔑 Viktigaste Slutsatserna</h3>
+<div style="font-size:12.5px;color:var(--t2);line-height:1.8">
+<div style="padding:8px 0;border-bottom:1px solid var(--brd)"><span style="color:var(--grn);font-weight:700">GOOGL</span> och <span style="color:var(--grn);font-weight:700">TSM</span> är billigast — Fwd P/E 20x och bäst EV/FCF i gruppen. Alla tre portfölj-PM:s har dem som top holdings.</div>
+<div style="padding:8px 0;border-bottom:1px solid var(--brd)"><span style="color:var(--gld);font-weight:700">$640B+ AI CapEx 2026</span> — GOOGL $175B, AMZN $200B, META $125B, MSFT $150B. Historisk investering. NVDA och TSM primära mottagare.</div>
+<div style="padding:8px 0;border-bottom:1px solid var(--brd)"><span style="color:var(--red);font-weight:700">TSLA</span> handlas på tro, inte fundamentals — P/E 376x med första revenue-decline. Alla PM:s: max 3% eller 0%.</div>
+<div style="padding:8px 0"><span style="color:var(--gld);font-weight:700">GAAP-vaksamhet krävs</span> — TSLA ($0.24/$0.50 EPS), MSFT ($5.16/$4.14 pga OpenAI-vinst), META (SBC 10%). TSM renast.</div>
+</div>
+</div>
+
+<!-- CONSENSUS ALLOCATION -->
+<div style="background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:20px">
+<h3 style="font-size:13px;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px">💼 Konsensus Allokering <span style="font-weight:400;font-size:10px;text-transform:none;letter-spacing:0">(snitt 3 PM:s)</span></h3>
+<div style="display:flex;height:40px;border-radius:8px;overflow:hidden;gap:2px;margin-bottom:14px">
+${avg.map(a=>`<div style="flex:${a.p};background:${tkColors[a.t]};display:flex;align-items:center;justify-content:center;font-size:${a.p>5?'10':'8'}px;font-weight:700;color:#fff;border-radius:3px;min-width:0">${a.p>3?a.t+' '+a.p+'%':''}</div>`).join('')}
+</div>
+${avg.map(a=>{const c=D[a.t];const sc=signalColors[c.signal];
+return`<div style="display:flex;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px solid rgba(42,47,62,.3);font-size:12px">
+<span style="font-family:'JetBrains Mono',monospace;font-weight:700;color:${tkColors[a.t]}">${a.t}</span>
+<span style="font-family:'JetBrains Mono',monospace;font-weight:700">${a.p}%</span>
+<span style="font-size:10px;color:${sc}">${c.signalText}</span>
+<span style="font-size:10px;color:var(--t3)">${c.pe_fwd} fwd</span>
+</div>`;}).join('')}
+<div style="margin-top:10px;font-size:10px;color:var(--t3);text-align:center;cursor:pointer" onclick="setActiveTab('PORTFOLIO')">Visa detaljerade portföljer →</div>
+</div>
+</div>
+
+<!-- ALL 8 COMPANIES QUICK CARDS -->
+<div class="section">
+<div class="section-title">📋 Alla Bolag — Klicka för djupanalys</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">
+${tickers.map(t=>{const c=D[t];const col=signalColors[c.signal];const bc={attractive:'var(--grn-bg2)',fair:'var(--gld-bg2)',speculative:'var(--prp-bg)'}[c.signal];
+return`<div onclick="setActiveTab('${t}')" style="cursor:pointer;background:var(--bg3);border:1px solid var(--brd);border-radius:var(--radius);padding:16px;transition:all .15s;border-left:3px solid ${col}" onmouseover="this.style.background='var(--bg4)'" onmouseout="this.style.background='var(--bg3)'">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+<div style="display:flex;align-items:center;gap:8px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700">${t}</span>
+<span style="font-size:11px;color:var(--t3)">${c.name}</span>
+</div>
+<span style="padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;background:${bc};color:${col}">${c.signalText}</span>
+</div>
+<div style="font-size:11.5px;color:var(--t2);line-height:1.5;margin-bottom:10px">${c.oneliner}</div>
+<div style="display:flex;gap:12px;font-family:'JetBrains Mono',monospace;font-size:11px">
+<span><span style="color:var(--t3)">Fwd P/E</span> <b>${c.pe_fwd}</b></span>
+<span><span style="color:var(--t3)">Growth</span> <b style="color:${c.revGrowth.includes('-')?'var(--red)':'var(--grn)'}">${c.revGrowth}</b></span>
+<span><span style="color:var(--t3)">PEG</span> <b style="color:${parseFloat(c.peg)<1?'var(--grn)':parseFloat(c.peg)<2?'var(--gld)':'var(--red)'}">${c.peg}</b></span>
+<span><span style="color:var(--t3)">EV/FCF</span> <b>${c.ev_fcf}</b></span>
+</div>
+</div>`;}).join('')}
+</div>
+</div>
+
+<!-- BOTTOM NAV HINTS -->
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+<span onclick="setActiveTab('COMPARE')" style="cursor:pointer;padding:8px 16px;background:var(--gld-bg);border:1px solid rgba(234,179,8,.2);border-radius:20px;font-size:11px;font-weight:600;color:var(--gld)">📊 Jämför alla →</span>
+<span onclick="setActiveTab('FINTWIT')" style="cursor:pointer;padding:8px 16px;background:var(--blu-bg);border:1px solid rgba(59,130,246,.2);border-radius:20px;font-size:11px;font-weight:600;color:var(--blu)">𝕏 FinTwit Sentiment →</span>
+<span onclick="setActiveTab('PORTFOLIO')" style="cursor:pointer;padding:8px 16px;background:var(--prp-bg);border:1px solid rgba(168,85,247,.2);border-radius:20px;font-size:11px;font-weight:600;color:var(--prp)">💼 Portföljer →</span>
+</div>
+`;}
+
+const content=document.getElementById('content');
+function setActiveTab(tab){document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));const el=document.querySelector(`[data-tab="${tab}"]`);if(el)el.classList.add('active');if(tab==='OVERVIEW')content.innerHTML=renderOverview();else if(tab==='COMPARE')content.innerHTML=renderCompare();else if(tab==='FINTWIT')content.innerHTML=renderFintwit();else if(tab==='PORTFOLIO')content.innerHTML=renderPortfolio();else if(tab==='CHANGELOG')content.innerHTML=renderChangelog();else content.innerHTML=renderCompanyTab(tab);window.scrollTo({top:0,behavior:'smooth'});}
+navEl.addEventListener('click',e=>{const tab=e.target.closest('.nav-tab');if(tab)setActiveTab(tab.dataset.tab);});
+setActiveTab('OVERVIEW');
+</script>
+</body>
+</html>
