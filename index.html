@@ -105,337 +105,1802 @@ document.getElementById('discToggle').onclick = function() {
 // Data loaded inline (no fetch needed)
 var D = {
   "meta": {
-    "version": "3.0",
-    "date": "2026-03-11",
-    "sources": ["SEC EDGAR","StockAnalysis.com (SA)","GuruFocus.com (GF)","FinanceCharts.com (FC)","FullRatio.com (FR)","MacroTrends.net (MT)","TipRanks","Motley Fool transcripts","CNBC","Yahoo Finance"],
+    "version": "3.1",
+    "date": "2026-03-24",
+    "sources": [
+      "SEC EDGAR",
+      "StockAnalysis.com (SA)",
+      "GuruFocus.com (GF)",
+      "FinanceCharts.com (FC)",
+      "FullRatio.com (FR)",
+      "MacroTrends.net (MT)",
+      "TipRanks",
+      "Motley Fool transcripts",
+      "CNBC",
+      "Yahoo Finance"
+    ],
     "disclaimer": "This is NOT investment advice. Structured research based on public data and AI-generated assessments. Verify all figures against primary sources. Consult a licensed financial advisor."
   },
   "fintwit": [
-    {"handle":"@michaeljburry","name":"Michael Burry","stance":"Bear NVDA+TSLA","note":"Called NVDA Mafia-Like antitrust risk (Mar 2026). TSLA ridiculously overvalued (Dec 2025).","followers":"~1.8M"},
-    {"handle":"@DanIves","name":"Dan Ives (Wedbush)","stance":"Bull MSFT AAPL TSLA","note":"Top 5 AI picks 2026: MSFT, AAPL, TSLA, PLTR, CRWD. TSLA base $600, bull $800. AAPL PT $350. Every $1 NVDA chip = $8-10 multiplier.","followers":"~500K"},
-    {"handle":"@CathieDWood","name":"Cathie Wood (ARK)","stance":"Bull TSLA, trimming","note":"TSLA largest holding ($1.14B). Added META+GOOGL Q3. Sold some TSLA+AMZN Q4. Big Ideas 2026: autonomous vehicles, robotics, energy.","followers":"~1.5M"},
-    {"handle":"@LizAnnSonders","name":"Liz Ann Sonders (Schwab)","stance":"Cautious Mag7","note":"Warns market top-heavy (37-38% in top 10). Expects Impressive-493 to outperform Mag7 in 2026. Tale of two markets.","followers":"~750K"},
-    {"handle":"@EdYardeni","name":"Ed Yardeni","stance":"Cautious rotation","note":"Expects 493 to outperform Mag7 in 2026. Warns Mag7 competing with each other now. Concerned about startup disruption (DeepSeek).","followers":"~300K"},
-    {"handle":"@GaryBlack00","name":"Gary Black (Future Fund)","stance":"Bull TSLA cautious","note":"Highlights TSLA autonomous driving as catalyst. Notes TSLA underperforming S&P 500. Tracks delivery numbers closely.","followers":"~400K"},
-    {"handle":"@BrianNowak_MS","name":"Brian Nowak (Morgan Stanley)","stance":"Bull META","note":"OW META $750 PT. Three catalysts: revenue revisions, OpEx discipline, Superintelligence team monetization. META top ad pick 2026.","followers":"Institutional"},
-    {"handle":"@MarkLipacis","name":"Mark Lipacis (Evercore ISI)","stance":"Bull NVDA","note":"NVDA Buy PT $352 based on 35x 2030 EPS $14.74. Called $493B revenue visibility conservative. Strong Buy.","followers":"Institutional"},
-    {"handle":"@Citrini7","name":"Citrini","stance":"Thematic AI Bull","note":"Early AI hardware adopter 2023. Focus on infrastructure picks and water industry. Bold contrarian calls (SVB short 2022).","followers":"~150K"},
-    {"handle":"@BuccoCapital","name":"BuccoCapital Bloke","stance":"Tech/Software neutral","note":"Software and tech commentary with memes. Not specifically Mag7 focused but influential voice on tech valuations.","followers":"~200K"},
-    {"handle":"@ParikPatelCFA","name":"Dr. Parik Patel","stance":"Satirical/Meme","note":"FinTwit meme king. Humorous takes on Mag7 valuations. Not investment advice but reflects retail sentiment mood.","followers":"~1M"},
-    {"handle":"@WalterBloomberg","name":"Walter Bloomberg (DeItaone)","stance":"News/Neutral","note":"Real-time breaking news. Shared Ives top AI picks, NVDA earnings, all major calls. Essential news source.","followers":"~800K"},
-    {"handle":"@JesseFelder","name":"Jesse Felder","stance":"Cautious/Value","note":"Value-oriented skeptic. Warns about AI valuation excess. Simplifies complex financial concepts. Felder Report.","followers":"~200K"},
-    {"handle":"@TBPInvesting","name":"The Bear Cave","stance":"Short-focused","note":"Edwin Dorsey. Short research on accounting issues. Not actively short Mag7 but tracks red flags. Top 100 FinTwit list creator.","followers":"~100K"},
-    {"handle":"@EmmetSavage","name":"Emmet Savage (MyWallSt)","stance":"Long-term Bull","note":"Co-founder MyWallSt. Long-term tech bull. Analyzes trends, provides investment advice for retail investors.","followers":"~150K"},
-    {"handle":"@StockMKTNewz","name":"Evan (Stock Market News)","stance":"News aggregator","note":"Fast market news, earnings summaries, analyst calls. Covers all Mag7 earnings. High engagement.","followers":"~600K"},
-    {"handle":"@RampCapitalLLC","name":"Ramp Capital","stance":"Satirical/Market","note":"Market commentary with humor. Reflects retail mood on Mag7 names. High engagement on earnings days.","followers":"~400K"},
-    {"handle":"@Newsquawk","name":"Newsquawk","stance":"News/Neutral","note":"Real-time audio news. Zero-delay financial reporting. Essential for earnings reactions and market moves.","followers":"~300K"},
-    {"handle":"@BillBrewsterTBB","name":"Bill Brewster","stance":"Value-oriented","note":"Business Brew podcast. Interviews fund managers and executives. Broader investing topics beyond just Mag7.","followers":"~150K"},
-    {"handle":"@WifeyAlpha","name":"Wifey Alpha","stance":"Quant/Data","note":"Data-driven analysis. Tracks flows, positioning, technical setups across Mag7 and broader market.","followers":"~250K"}
+    {
+      "handle": "@michaeljburry",
+      "name": "Michael Burry",
+      "stance": "Bear NVDA+TSLA",
+      "note": "Called NVDA Mafia-Like antitrust risk (Mar 2026). TSLA ridiculously overvalued (Dec 2025).",
+      "followers": "~1.8M"
+    },
+    {
+      "handle": "@DanIves",
+      "name": "Dan Ives (Wedbush)",
+      "stance": "Bull MSFT AAPL TSLA",
+      "note": "Top 5 AI picks 2026: MSFT, AAPL, TSLA, PLTR, CRWD. TSLA base $600, bull $800. AAPL PT $350. Every $1 NVDA chip = $8-10 multiplier.",
+      "followers": "~500K"
+    },
+    {
+      "handle": "@CathieDWood",
+      "name": "Cathie Wood (ARK)",
+      "stance": "Bull TSLA, trimming",
+      "note": "TSLA largest holding ($1.14B). Added META+GOOGL Q3. Sold some TSLA+AMZN Q4. Big Ideas 2026: autonomous vehicles, robotics, energy.",
+      "followers": "~1.5M"
+    },
+    {
+      "handle": "@LizAnnSonders",
+      "name": "Liz Ann Sonders (Schwab)",
+      "stance": "Cautious Mag7",
+      "note": "Warns market top-heavy (37-38% in top 10). Expects Impressive-493 to outperform Mag7 in 2026. Tale of two markets.",
+      "followers": "~750K"
+    },
+    {
+      "handle": "@EdYardeni",
+      "name": "Ed Yardeni",
+      "stance": "Cautious rotation",
+      "note": "Expects 493 to outperform Mag7 in 2026. Warns Mag7 competing with each other now. Concerned about startup disruption (DeepSeek).",
+      "followers": "~300K"
+    },
+    {
+      "handle": "@GaryBlack00",
+      "name": "Gary Black (Future Fund)",
+      "stance": "Bull TSLA cautious",
+      "note": "Highlights TSLA autonomous driving as catalyst. Notes TSLA underperforming S&P 500. Tracks delivery numbers closely.",
+      "followers": "~400K"
+    },
+    {
+      "handle": "@BrianNowak_MS",
+      "name": "Brian Nowak (Morgan Stanley)",
+      "stance": "Bull META",
+      "note": "OW META $750 PT. Three catalysts: revenue revisions, OpEx discipline, Superintelligence team monetization. META top ad pick 2026.",
+      "followers": "Institutional"
+    },
+    {
+      "handle": "@MarkLipacis",
+      "name": "Mark Lipacis (Evercore ISI)",
+      "stance": "Bull NVDA",
+      "note": "NVDA Buy PT $352 based on 35x 2030 EPS $14.74. Called $493B revenue visibility conservative. Strong Buy.",
+      "followers": "Institutional"
+    },
+    {
+      "handle": "@Citrini7",
+      "name": "Citrini",
+      "stance": "Thematic AI Bull",
+      "note": "Early AI hardware adopter 2023. Focus on infrastructure picks and water industry. Bold contrarian calls (SVB short 2022).",
+      "followers": "~150K"
+    },
+    {
+      "handle": "@BuccoCapital",
+      "name": "BuccoCapital Bloke",
+      "stance": "Tech/Software neutral",
+      "note": "Software and tech commentary with memes. Not specifically Mag7 focused but influential voice on tech valuations.",
+      "followers": "~200K"
+    },
+    {
+      "handle": "@ParikPatelCFA",
+      "name": "Dr. Parik Patel",
+      "stance": "Satirical/Meme",
+      "note": "FinTwit meme king. Humorous takes on Mag7 valuations. Not investment advice but reflects retail sentiment mood.",
+      "followers": "~1M"
+    },
+    {
+      "handle": "@WalterBloomberg",
+      "name": "Walter Bloomberg (DeItaone)",
+      "stance": "News/Neutral",
+      "note": "Real-time breaking news. Shared Ives top AI picks, NVDA earnings, all major calls. Essential news source.",
+      "followers": "~800K"
+    },
+    {
+      "handle": "@JesseFelder",
+      "name": "Jesse Felder",
+      "stance": "Cautious/Value",
+      "note": "Value-oriented skeptic. Warns about AI valuation excess. Simplifies complex financial concepts. Felder Report.",
+      "followers": "~200K"
+    },
+    {
+      "handle": "@TBPInvesting",
+      "name": "The Bear Cave",
+      "stance": "Short-focused",
+      "note": "Edwin Dorsey. Short research on accounting issues. Not actively short Mag7 but tracks red flags. Top 100 FinTwit list creator.",
+      "followers": "~100K"
+    },
+    {
+      "handle": "@EmmetSavage",
+      "name": "Emmet Savage (MyWallSt)",
+      "stance": "Long-term Bull",
+      "note": "Co-founder MyWallSt. Long-term tech bull. Analyzes trends, provides investment advice for retail investors.",
+      "followers": "~150K"
+    },
+    {
+      "handle": "@StockMKTNewz",
+      "name": "Evan (Stock Market News)",
+      "stance": "News aggregator",
+      "note": "Fast market news, earnings summaries, analyst calls. Covers all Mag7 earnings. High engagement.",
+      "followers": "~600K"
+    },
+    {
+      "handle": "@RampCapitalLLC",
+      "name": "Ramp Capital",
+      "stance": "Satirical/Market",
+      "note": "Market commentary with humor. Reflects retail mood on Mag7 names. High engagement on earnings days.",
+      "followers": "~400K"
+    },
+    {
+      "handle": "@Newsquawk",
+      "name": "Newsquawk",
+      "stance": "News/Neutral",
+      "note": "Real-time audio news. Zero-delay financial reporting. Essential for earnings reactions and market moves.",
+      "followers": "~300K"
+    },
+    {
+      "handle": "@BillBrewsterTBB",
+      "name": "Bill Brewster",
+      "stance": "Value-oriented",
+      "note": "Business Brew podcast. Interviews fund managers and executives. Broader investing topics beyond just Mag7.",
+      "followers": "~150K"
+    },
+    {
+      "handle": "@WifeyAlpha",
+      "name": "Wifey Alpha",
+      "stance": "Quant/Data",
+      "note": "Data-driven analysis. Tracks flows, positioning, technical setups across Mag7 and broader market.",
+      "followers": "~250K"
+    }
   ],
   "portfolios": {
     "blind_1": {
       "name": "Growth Compounder (Bull Case)",
       "thesis": "AI CapEx cycle extends 3-5 years. Hyperscalers monetize investments. Picks and shovels dominate.",
-      "allocation": {"NVDA":20,"META":18,"TSM":15,"GOOGL":15,"MSFT":12,"AMZN":10,"AAPL":8,"TSLA":2},
+      "allocation": {
+        "NVDA": 20,
+        "META": 18,
+        "TSM": 15,
+        "GOOGL": 15,
+        "MSFT": 12,
+        "AMZN": 10,
+        "AAPL": 8,
+        "TSLA": 2
+      },
       "rationale": "NVDA+TSM are direct CapEx beneficiaries. META has best PEG (1.05) and lowest fwd P/E (21.8x). GOOGL undervalued. TSLA minimal due to extreme valuation risk."
     },
     "blind_2": {
       "name": "Risk-Adjusted Value (Base Case)",
       "thesis": "CapEx cycle continues but ROI scrutiny increases. Favor diversified cash generators with reasonable valuations.",
-      "allocation": {"GOOGL":20,"META":18,"MSFT":17,"AMZN":15,"TSM":12,"NVDA":10,"AAPL":5,"TSLA":3},
+      "allocation": {
+        "GOOGL": 20,
+        "META": 18,
+        "MSFT": 17,
+        "AMZN": 15,
+        "TSM": 12,
+        "NVDA": 10,
+        "AAPL": 5,
+        "TSLA": 3
+      },
       "rationale": "GOOGL cheapest P/E vs growth. MSFT safest enterprise play. AMZN margin expansion story. NVDA reduced due to cyclical risk. TSLA low due to P/E 377x with neg growth."
     },
     "blind_3": {
       "name": "Defensive Quality (Bear Case)",
       "thesis": "AI CapEx peaks H2 2026. Cycle turns. Favor cash-rich, low-CapEx companies with pricing power.",
-      "allocation": {"AAPL":22,"GOOGL":18,"META":16,"MSFT":15,"AMZN":12,"TSM":8,"NVDA":6,"TSLA":3},
+      "allocation": {
+        "AAPL": 22,
+        "GOOGL": 18,
+        "META": 16,
+        "MSFT": 15,
+        "AMZN": 12,
+        "TSM": 8,
+        "NVDA": 6,
+        "TSLA": 3
+      },
       "rationale": "AAPL has $54B net cash, $100B+/yr buybacks, minimal CapEx exposure. GOOGL/META strong FCF generators. NVDA+TSM reduced as CapEx beneficiaries at risk. TSLA minimal."
     }
   },
   "companies": {
     "NVDA": {
-      "name":"NVIDIA Corporation","sector":"Semiconductors","price":"$184.77","mcap":"$4.5T","w52":"$66-153",
+      "name": "NVIDIA Corporation",
+      "sector": "Semiconductors",
+      "price": "$175.64",
+      "mcap": "$4.2T",
+      "w52": "$86-153",
       "valuation": {
-        "trailingPE":{"value":"37.5","sources":"SA:37.71|GF:37.90|FR:37.48","confidence":"high","note":"3 sources agree ~37.5x. MT:47.48 uses different calc."},
-        "forwardPE":{"value":"22.5","sources":"SA:22.40|GF:22.63","confidence":"medium","note":"SA/GF agree. FC:29.94 uses diff fwd EPS. Range 22-30x."},
-        "evEbitda":{"value":"33.3","sources":"SA:33.31","confidence":"medium","note":"Single source verified."},
-        "peg":{"value":"0.62","sources":"SA:0.62","confidence":"medium","note":"Based on consensus growth."},
-        "ps":{"value":"8.6","sources":"Derived: $4.5T/$216B","confidence":"high","note":"Rev SEC-confirmed."}
+        "trailingPE": {
+          "value": "37.5",
+          "sources": "SA:37.71|GF:37.90|FR:37.48",
+          "confidence": "high",
+          "note": "3 sources agree ~37.5x. MT:47.48 uses different calc."
+        },
+        "forwardPE": {
+          "value": "22.5",
+          "sources": "SA:22.40|GF:22.63",
+          "confidence": "medium",
+          "note": "SA/GF agree. FC:29.94 uses diff fwd EPS. Range 22-30x."
+        },
+        "evEbitda": {
+          "value": "33.3",
+          "sources": "SA:33.31",
+          "confidence": "medium",
+          "note": "Single source verified."
+        },
+        "peg": {
+          "value": "0.62",
+          "sources": "SA:0.62",
+          "confidence": "medium",
+          "note": "Based on consensus growth."
+        },
+        "ps": {
+          "value": "19.5",
+          "sources": "Calculated: $4.2T/215.9B. MCap from CompaniesMarketCap:$4.197T|MF:$4.5T(Mar24)",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev Q4 FY26","value":"$68.1B","change":"+73% YoY","positive":true,"source":"SEC+IR"},
-        {"label":"FY26 Revenue","value":"$215.9B","change":"+65%","positive":true,"source":"SEC"},
-        {"label":"GAAP EPS Q4","value":"$1.76","change":"+98%","positive":true,"source":"SEC"},
-        {"label":"Gross Margin","value":"75.0%","change":"GAAP","positive":true,"source":"SEC"},
-        {"label":"FCF Q4","value":"$35.0B","change":"Record","positive":true,"source":"TipRanks+SEC"},
-        {"label":"FCF FY26","value":"$97.0B","change":"Massive","positive":true,"source":"TipRanks"}
+      "kpis": [
+        {
+          "label": "Rev Q4 FY26",
+          "value": "$68.1B",
+          "change": "+73% YoY",
+          "positive": true,
+          "source": "SEC+IR"
+        },
+        {
+          "label": "FY26 Revenue",
+          "value": "$215.9B",
+          "change": "+65%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "GAAP EPS Q4",
+          "value": "$1.76",
+          "change": "+98%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Gross Margin",
+          "value": "75.0%",
+          "change": "GAAP",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "FCF Q4",
+          "value": "$35.0B",
+          "change": "Record",
+          "positive": true,
+          "source": "TipRanks+SEC"
+        },
+        {
+          "label": "FCF FY26",
+          "value": "$97.0B",
+          "change": "Massive",
+          "positive": true,
+          "source": "TipRanks"
+        }
       ],
-      "quarters":[
-        {"q":"Q1 FY25","rev":"$26.0B","gr":"+262%","gm":"78.9%","oi":"$16.9B","eps":"$0.67"},
-        {"q":"Q2 FY25","rev":"$30.0B","gr":"+122%","gm":"75.1%","oi":"$18.6B","eps":"$0.68"},
-        {"q":"Q3 FY25","rev":"$35.1B","gr":"+94%","gm":"74.6%","oi":"$21.9B","eps":"$0.81"},
-        {"q":"Q4 FY25","rev":"$39.3B","gr":"+78%","gm":"73.0%","oi":"$25.5B","eps":"$0.89"},
-        {"q":"Q3 FY26","rev":"$57.0B","gr":"+62%","gm":"~72%","oi":"~$36.8B","eps":"$1.33"},
-        {"q":"Q4 FY26","rev":"$68.1B","gr":"+73%","gm":"75.0%","oi":"$44.3B","eps":"$1.76"}
+      "quarters": [
+        {
+          "q": "Q1 FY25",
+          "rev": "$26.0B",
+          "gr": "+262%",
+          "gm": "78.9%",
+          "oi": "$16.9B",
+          "eps": "$0.67"
+        },
+        {
+          "q": "Q2 FY25",
+          "rev": "$30.0B",
+          "gr": "+122%",
+          "gm": "75.1%",
+          "oi": "$18.6B",
+          "eps": "$0.68"
+        },
+        {
+          "q": "Q3 FY25",
+          "rev": "$35.1B",
+          "gr": "+94%",
+          "gm": "74.6%",
+          "oi": "$21.9B",
+          "eps": "$0.81"
+        },
+        {
+          "q": "Q4 FY25",
+          "rev": "$39.3B",
+          "gr": "+78%",
+          "gm": "73.0%",
+          "oi": "$25.5B",
+          "eps": "$0.89"
+        },
+        {
+          "q": "Q3 FY26",
+          "rev": "$57.0B",
+          "gr": "+62%",
+          "gm": "~72%",
+          "oi": "~$36.8B",
+          "eps": "$1.33"
+        },
+        {
+          "q": "Q4 FY26",
+          "rev": "$68.1B",
+          "gr": "+73%",
+          "gm": "75.0%",
+          "oi": "$44.3B",
+          "eps": "$1.76"
+        }
       ],
-      "gaap":{"period":"Q4 FY26","rows":[["Revenue","$68.1B","$68.1B","No diff","OK"],["GM","75.0%","75.2%","+0.2pp SBC","OK"],["EPS","$1.76","$1.62","GAAP>nGAAP tax","NOTE"]],"comment":"SBC ~2.5% rev. GAAP>non-GAAP unusual due to tax effects. Transparent."},
-      "earningsCall":{"date":"25 Feb 2026","period":"Q4 FY2026",
-        "highlights":["Record $68.1B (+73%), sequential acceleration from Q3","Data Center $62B (+75% YoY, +22% QoQ) scaled 13x since ChatGPT","Networking $11B Q4, +3.5x YoY. Full-year >$31B (10x vs FY21)","Sovereign AI >$30B FY26 (3x) from Canada, France, NL, Singapore, UK","FCF $35B Q4, $97B FY26. Returned $41B (43% of FCF)","Pro Viz $1.3B (+159% YoY) first time above $1B","Q1 FY27 guidance: $78B +/-2%. R&D budget now ~$20B/yr","Rubin platform: 6 new chips, Vera Rubin samples shipped, production H2 2026"],
-        "guidance":"Rev $78B Q1. GAAP GM 74.9% +/-50bps. Majority of growth from Data Center. Supply remains tight.",
-        "qa":["Jensen: compute equals revenues - AI infra investment directly drives customer revenue","Blackwell+Rubin: Meta and Anthropic scaling with millions of GPUs","$10B Anthropic investment + deepened OpenAI partnership + new Groq deal","China: Small H200 approvals but ZERO revenue booked. Regulatory uncertainty remains","Gaming: Supply constraints expected as headwind in Q1 and beyond","Inventory +8% QoQ. Purchase commitments increased significantly into 2027","Chinese AI rivals with recent IPOs flagged as potential long-term disruption","Rubin promises 10x lower inference cost vs Blackwell - next generation shift"],
-        "source":"Motley Fool full transcript (25 Feb 2026), SEC filing, CNBC, GuruFocus highlights"
+      "gaap": {
+        "period": "Q4 FY26",
+        "rows": [
+          [
+            "Revenue",
+            "$68.1B",
+            "$68.1B",
+            "No diff",
+            "OK"
+          ],
+          [
+            "GM",
+            "75.0%",
+            "75.2%",
+            "+0.2pp SBC",
+            "OK"
+          ],
+          [
+            "EPS",
+            "$1.76",
+            "$1.62",
+            "GAAP>nGAAP tax",
+            "NOTE"
+          ]
+        ],
+        "comment": "SBC ~2.5% rev. GAAP>non-GAAP unusual due to tax effects. Transparent."
       },
-      "sentiment":{"temperature":"Bullish","emoji":"green","summary":"Burry flagged NVDA as Mafia-Like + antitrust risk (Benzinga Mar 2026). SA writer: bulls strengthen bear case at current multiples (Nov 2025). Bull side: Goldman PT $250 (+39% upside), Evercore Lipacis PT $352, Raymond James Strong Buy. Consensus: 39 Buy/1 Hold/1 Sell (TipRanks). StockTwits Bullish.","profiles":"@michaeljburry (Bear), Goldman Sachs ($250), Evercore Lipacis ($352), Raymond James (Strong Buy)"},
-      "bull":{"thesis":"AI-infra dominant with ~80%+ datacenter GPU market share. Blackwell ramp + Rubin announced.","args":["Revenue +65% FY26 to $215.9B unprecedented scale (SEC)","FCF $97B FY26 massive capital return capacity (TipRanks)","AI infra in early innings - hyperscalers, enterprises, sovereigns all building","Blackwell ~9GW deployed; Rubin 6 new chips (earnings call)","Networking $31B FY26, 10x vs FY21 - platform broadening (call)"],"risk":"Margin compression if custom silicon (TPU/Trainium/Maia) takes share","fvLow":140,"fvHigh":180,"conviction":"High"},
-      "bear":{"thesis":"Premium valuation requires perfect execution. Custom chips emerging, CapEx cycle may peak.","args":["Trailing P/E 37.5x requires sustained high growth","Gross margin down from 79% to 71-75% trend reversal","Google TPU, Amazon Trainium, Microsoft Maia all building alternatives","CapEx cycle may peak 2026-27 - semiconductors historically cyclical","China export restrictions limit addressable market"],"risk":"Agentic AI trend may significantly extend the cycle","fvLow":80,"fvHigh":120,"conviction":"Medium"},
-      "verdict":"Both agree: exceptional company. Diverge on duration. Forward P/E ~22x provides more headroom than trailing ~37x suggests."
+      "earningsCall": {
+        "date": "25 Feb 2026",
+        "period": "Q4 FY2026",
+        "highlights": [
+          "Record $68.1B (+73%), sequential acceleration from Q3",
+          "Data Center $62B (+75% YoY, +22% QoQ) scaled 13x since ChatGPT",
+          "Networking $11B Q4, +3.5x YoY. Full-year >$31B (10x vs FY21)",
+          "Sovereign AI >$30B FY26 (3x) from Canada, France, NL, Singapore, UK",
+          "FCF $35B Q4, $97B FY26. Returned $41B (43% of FCF)",
+          "Pro Viz $1.3B (+159% YoY) first time above $1B",
+          "Q1 FY27 guidance: $78B +/-2%. R&D budget now ~$20B/yr",
+          "Rubin platform: 6 new chips, Vera Rubin samples shipped, production H2 2026"
+        ],
+        "guidance": "Rev $78B Q1. GAAP GM 74.9% +/-50bps. Majority of growth from Data Center. Supply remains tight.",
+        "qa": [
+          "Jensen: compute equals revenues - AI infra investment directly drives customer revenue",
+          "Blackwell+Rubin: Meta and Anthropic scaling with millions of GPUs",
+          "$10B Anthropic investment + deepened OpenAI partnership + new Groq deal",
+          "China: Small H200 approvals but ZERO revenue booked. Regulatory uncertainty remains",
+          "Gaming: Supply constraints expected as headwind in Q1 and beyond",
+          "Inventory +8% QoQ. Purchase commitments increased significantly into 2027",
+          "Chinese AI rivals with recent IPOs flagged as potential long-term disruption",
+          "Rubin promises 10x lower inference cost vs Blackwell - next generation shift"
+        ],
+        "source": "Motley Fool full transcript (25 Feb 2026), SEC filing, CNBC, GuruFocus highlights"
+      },
+      "sentiment": {
+        "temperature": "Bullish",
+        "emoji": "green",
+        "summary": "Burry flagged NVDA as Mafia-Like + antitrust risk (Benzinga Mar 2026). SA writer: bulls strengthen bear case at current multiples (Nov 2025). Bull side: Goldman PT $250 (+39% upside), Evercore Lipacis PT $352, Raymond James Strong Buy. Consensus: 39 Buy/1 Hold/1 Sell (TipRanks). StockTwits Bullish.",
+        "profiles": "@michaeljburry (Bear), Goldman Sachs ($250), Evercore Lipacis ($352), Raymond James (Strong Buy)"
+      },
+      "bull": {
+        "thesis": "AI-infra dominant with ~80%+ datacenter GPU market share. Blackwell ramp + Rubin announced.",
+        "args": [
+          "Revenue +65% FY26 to $215.9B unprecedented scale (SEC)",
+          "FCF $97B FY26 massive capital return capacity (TipRanks)",
+          "AI infra in early innings - hyperscalers, enterprises, sovereigns all building",
+          "Blackwell ~9GW deployed; Rubin 6 new chips (earnings call)",
+          "Networking $31B FY26, 10x vs FY21 - platform broadening (call)"
+        ],
+        "risk": "Margin compression if custom silicon (TPU/Trainium/Maia) takes share",
+        "fvLow": 140,
+        "fvHigh": 180,
+        "conviction": "High"
+      },
+      "bear": {
+        "thesis": "Premium valuation requires perfect execution. Custom chips emerging, CapEx cycle may peak.",
+        "args": [
+          "Trailing P/E 37.5x requires sustained high growth",
+          "Gross margin down from 79% to 71-75% trend reversal",
+          "Google TPU, Amazon Trainium, Microsoft Maia all building alternatives",
+          "CapEx cycle may peak 2026-27 - semiconductors historically cyclical",
+          "China export restrictions limit addressable market"
+        ],
+        "risk": "Agentic AI trend may significantly extend the cycle",
+        "fvLow": 80,
+        "fvHigh": 120,
+        "conviction": "Medium"
+      },
+      "verdict": "Both agree: exceptional company. Diverge on duration. Forward P/E ~22x provides more headroom than trailing ~37x suggests."
     },
     "AAPL": {
-      "name":"Apple Inc.","sector":"Consumer Electronics/Services","price":"$260.83","mcap":"$3.83T","w52":"$169-260",
+      "name": "Apple Inc.",
+      "sector": "Consumer Electronics/Services",
+      "price": "$251.44",
+      "mcap": "$3.8T",
+      "w52": "$169-289",
       "valuation": {
-        "trailingPE":{"value":"33.1","sources":"SA:33.08|GF:34.95|FC:33.19|MT:32.34","confidence":"high","note":"4 sources agree 32-35x range."},
-        "forwardPE":{"value":"30.4","sources":"SA:30.36|GF:30.66|FC:32.05","confidence":"high","note":"All agree 30-32x."},
-        "evEbitda":{"value":"24.7","sources":"SA:24.69","confidence":"medium","note":"Single source."},
-        "peg":{"value":"2.90","sources":"SA:2.90","confidence":"medium","note":"High - expensive relative to growth."},
-        "ps":{"value":"8.8","sources":"SA: $3.83T/$436B","confidence":"high","note":""}
+        "trailingPE": {
+          "value": "33.1",
+          "sources": "SA:33.08|GF:34.95|FC:33.19|MT:32.34",
+          "confidence": "high",
+          "note": "4 sources agree 32-35x range."
+        },
+        "forwardPE": {
+          "value": "30.4",
+          "sources": "SA:30.36|GF:30.66|FC:32.05",
+          "confidence": "high",
+          "note": "All agree 30-32x."
+        },
+        "evEbitda": {
+          "value": "24.7",
+          "sources": "SA:24.69",
+          "confidence": "medium",
+          "note": "Single source."
+        },
+        "peg": {
+          "value": "2.90",
+          "sources": "SA:2.90",
+          "confidence": "medium",
+          "note": "High - expensive relative to growth."
+        },
+        "ps": {
+          "value": "8.7",
+          "sources": "Calculated: $3.8T/436B. MCap from Robinhood:$3.8T|SA:$3.8T",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev FQ1 26","value":"$143.8B","change":"+16% YoY","positive":true,"source":"SEC+IR"},
-        {"label":"EPS FQ1 26","value":"$2.84","change":"+19% ATH","positive":true,"source":"SEC"},
-        {"label":"iPhone Rev","value":"$85.3B","change":"+23% ATH","positive":true,"source":"SEC"},
-        {"label":"Services","value":"$30B","change":"+14% ATH","positive":true,"source":"SEC"},
-        {"label":"China Rev","value":"+38% YoY","change":"ATH upgraders","positive":true,"source":"Earnings call"},
-        {"label":"OCF","value":"$53.9B","change":"ATH any Q","positive":true,"source":"SEC"}
+      "kpis": [
+        {
+          "label": "Rev FQ1 26",
+          "value": "$143.8B",
+          "change": "+16% YoY",
+          "positive": true,
+          "source": "SEC+IR"
+        },
+        {
+          "label": "EPS FQ1 26",
+          "value": "$2.84",
+          "change": "+19% ATH",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "iPhone Rev",
+          "value": "$85.3B",
+          "change": "+23% ATH",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Services",
+          "value": "$30B",
+          "change": "+14% ATH",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "China Rev",
+          "value": "+38% YoY",
+          "change": "ATH upgraders",
+          "positive": true,
+          "source": "Earnings call"
+        },
+        {
+          "label": "OCF",
+          "value": "$53.9B",
+          "change": "ATH any Q",
+          "positive": true,
+          "source": "SEC"
+        }
       ],
-      "quarters":[
-        {"q":"FQ1 25","rev":"$124.3B","gr":"+4%","gm":"46.9%","oi":"$42.8B","eps":"$2.40"},
-        {"q":"FQ2 25","rev":"$95.4B","gr":"+5%","gm":"47.1%","oi":"$30.2B","eps":"$1.65"},
-        {"q":"FQ3 25","rev":"$94.4B","gr":"+6%","gm":"46.7%","oi":"$29.5B","eps":"$1.56"},
-        {"q":"FQ4 25","rev":"$102.5B","gr":"+8%","gm":"46.2%","oi":"$31.3B","eps":"$1.85"},
-        {"q":"FQ1 26","rev":"$143.8B","gr":"+16%","gm":"~47%","oi":"~$50B","eps":"$2.84"}
+      "quarters": [
+        {
+          "q": "FQ1 25",
+          "rev": "$124.3B",
+          "gr": "+4%",
+          "gm": "46.9%",
+          "oi": "$42.8B",
+          "eps": "$2.40"
+        },
+        {
+          "q": "FQ2 25",
+          "rev": "$95.4B",
+          "gr": "+5%",
+          "gm": "47.1%",
+          "oi": "$30.2B",
+          "eps": "$1.65"
+        },
+        {
+          "q": "FQ3 25",
+          "rev": "$94.4B",
+          "gr": "+6%",
+          "gm": "46.7%",
+          "oi": "$29.5B",
+          "eps": "$1.56"
+        },
+        {
+          "q": "FQ4 25",
+          "rev": "$102.5B",
+          "gr": "+8%",
+          "gm": "46.2%",
+          "oi": "$31.3B",
+          "eps": "$1.85"
+        },
+        {
+          "q": "FQ1 26",
+          "rev": "$143.8B",
+          "gr": "+16%",
+          "gm": "~47%",
+          "oi": "~$50B",
+          "eps": "$2.84"
+        }
       ],
-      "gaap":{"period":"FQ1 26","rows":[["Revenue","$143.8B","N/A","GAAP primary","OK"],["EPS","$2.84","N/A","GAAP focused","OK"]],"comment":"Apple primarily GAAP. SBC ~2% of revenue. Conservative and transparent."},
-      "earningsCall":{"date":"29 Jan 2026","period":"Q1 FY2026",
-        "highlights":["ATH revenue $143.8B (+16% YoY) best quarter ever","iPhone $85.3B (+23%) ATH records across every geographic segment","Services $30B (+14%) ATH with broad double-digit growth","EPS $2.84 (+19%) all-time record","Greater China +38% YoY driven by iPhone upgraders and store traffic records","Operating cash flow $53.9B ATH for any quarter"],
-        "guidance":"Q2: Revenue +13-16% YoY (comprehends constrained iPhone supply). GM 48-49%. OpEx $18.4-18.7B. Services growth similar to Q1 rate. Tax rate ~17.5%.",
-        "qa":["Memory costs: GM 48-49% despite rising memory prices indicates pricing power","iPhone supply constraints acknowledged for Q2 due to advanced node production limitations","India: +53% iPhone production increase, now making 25% of global output","Apple Intelligence: Tim Cook emphasized bringing intelligence to more of what people love","China +38%: Biggest surprise of the quarter - both switchers and upgraders at record levels"],
-        "source":"Motley Fool transcript, Investing.com summary, Yahoo Finance transcript (29 Jan 2026)"
+      "gaap": {
+        "period": "FQ1 26",
+        "rows": [
+          [
+            "Revenue",
+            "$143.8B",
+            "N/A",
+            "GAAP primary",
+            "OK"
+          ],
+          [
+            "EPS",
+            "$2.84",
+            "N/A",
+            "GAAP focused",
+            "OK"
+          ]
+        ],
+        "comment": "Apple primarily GAAP. SBC ~2% of revenue. Conservative and transparent."
       },
-      "sentiment":{"temperature":"Cautiously Bullish","emoji":"yellow","summary":"JPMorgan reiterates Overweight - iPhone 17 lead times in line with prior year. Dan Ives PT $350 (Street high) via Gemini partnership path to $5T. StockTwits cautious post-earnings despite beat. Motley Fool: $5T market cap path via AI.","profiles":"JPMorgan (OW), Dan Ives/Wedbush ($350 PT), Motley Fool (Bullish), StockTwits (Neutral/Cautious)"},
-      "bull":{"thesis":"World most valuable installed base (2.2B+ devices), Services accelerating with high margins, Apple Intelligence driving upgrade cycle.","args":["iPhone 16 set record for upgraders (earnings call)","Services at ATH with ~70%+ gross margin","Installed base 2.2B+ devices - monetization per device increasing","iPhone Air broadens portfolio","Capital allocation: >$100B/yr buybacks + dividends"],"risk":"Regulatory (App Store fees) and China weakness","fvLow":220,"fvHigh":280,"conviction":"High"},
-      "bear":{"thesis":"Mature company at premium valuation. iPhone growth low, AI strategy unclear vs peers.","args":["PEG 2.90 - expensive for ~8% revenue growth","iPhone revenue essentially flat YoY","Apple Intelligence lacks clear monetization plan vs Google/Meta","EU DMA threatens Services margins","China under pressure from Huawei comeback"],"risk":"If Services continues accelerating the math changes","fvLow":170,"fvHigh":220,"conviction":"Medium"},
-      "verdict":"Both agree: exceptional capital allocator with sticky installed base. Diverge: Bull sees AI-driven upgrade cycle, bear sees maturity at premium pricing. PEG 2.9 is expensive vs peers."
+      "earningsCall": {
+        "date": "29 Jan 2026",
+        "period": "Q1 FY2026",
+        "highlights": [
+          "ATH revenue $143.8B (+16% YoY) best quarter ever",
+          "iPhone $85.3B (+23%) ATH records across every geographic segment",
+          "Services $30B (+14%) ATH with broad double-digit growth",
+          "EPS $2.84 (+19%) all-time record",
+          "Greater China +38% YoY driven by iPhone upgraders and store traffic records",
+          "Operating cash flow $53.9B ATH for any quarter"
+        ],
+        "guidance": "Q2: Revenue +13-16% YoY (comprehends constrained iPhone supply). GM 48-49%. OpEx $18.4-18.7B. Services growth similar to Q1 rate. Tax rate ~17.5%.",
+        "qa": [
+          "Memory costs: GM 48-49% despite rising memory prices indicates pricing power",
+          "iPhone supply constraints acknowledged for Q2 due to advanced node production limitations",
+          "India: +53% iPhone production increase, now making 25% of global output",
+          "Apple Intelligence: Tim Cook emphasized bringing intelligence to more of what people love",
+          "China +38%: Biggest surprise of the quarter - both switchers and upgraders at record levels"
+        ],
+        "source": "Motley Fool transcript, Investing.com summary, Yahoo Finance transcript (29 Jan 2026)"
+      },
+      "sentiment": {
+        "temperature": "Cautiously Bullish",
+        "emoji": "yellow",
+        "summary": "JPMorgan reiterates Overweight - iPhone 17 lead times in line with prior year. Dan Ives PT $350 (Street high) via Gemini partnership path to $5T. StockTwits cautious post-earnings despite beat. Motley Fool: $5T market cap path via AI.",
+        "profiles": "JPMorgan (OW), Dan Ives/Wedbush ($350 PT), Motley Fool (Bullish), StockTwits (Neutral/Cautious)"
+      },
+      "bull": {
+        "thesis": "World most valuable installed base (2.2B+ devices), Services accelerating with high margins, Apple Intelligence driving upgrade cycle.",
+        "args": [
+          "iPhone 16 set record for upgraders (earnings call)",
+          "Services at ATH with ~70%+ gross margin",
+          "Installed base 2.2B+ devices - monetization per device increasing",
+          "iPhone Air broadens portfolio",
+          "Capital allocation: >$100B/yr buybacks + dividends"
+        ],
+        "risk": "Regulatory (App Store fees) and China weakness",
+        "fvLow": 220,
+        "fvHigh": 280,
+        "conviction": "High"
+      },
+      "bear": {
+        "thesis": "Mature company at premium valuation. iPhone growth low, AI strategy unclear vs peers.",
+        "args": [
+          "PEG 2.90 - expensive for ~8% revenue growth",
+          "iPhone revenue essentially flat YoY",
+          "Apple Intelligence lacks clear monetization plan vs Google/Meta",
+          "EU DMA threatens Services margins",
+          "China under pressure from Huawei comeback"
+        ],
+        "risk": "If Services continues accelerating the math changes",
+        "fvLow": 170,
+        "fvHigh": 220,
+        "conviction": "Medium"
+      },
+      "verdict": "Both agree: exceptional capital allocator with sticky installed base. Diverge: Bull sees AI-driven upgrade cycle, bear sees maturity at premium pricing. PEG 2.9 is expensive vs peers."
     },
     "MSFT": {
-      "name":"Microsoft Corporation","sector":"Software/Cloud","price":"$404.30","mcap":"$3.0T","w52":"$345-470",
+      "name": "Microsoft Corporation",
+      "sector": "Software/Cloud",
+      "price": "$383.04",
+      "mcap": "$3.6T",
+      "w52": "$345-470",
       "valuation": {
-        "trailingPE":{"value":"25.3","sources":"SA:25.34|GF:25.28","confidence":"high","note":"Both agree ~25x. Note: GAAP NI boosted by OpenAI one-off in FQ2."},
-        "forwardPE":{"value":"22.2","sources":"SA:23.07|GF:21.28","confidence":"medium","note":"Range 21-23x. Sources differ slightly."},
-        "evEbitda":{"value":"17.3","sources":"SA:17.32","confidence":"medium","note":"Single source verified."},
-        "peg":{"value":"1.71","sources":"SA:1.71","confidence":"medium","note":""},
-        "ps":{"value":"9.8","sources":"Derived: $3.0T/$305B","confidence":"high","note":""}
+        "trailingPE": {
+          "value": "25.3",
+          "sources": "SA:25.34|GF:25.28",
+          "confidence": "high",
+          "note": "Both agree ~25x. Note: GAAP NI boosted by OpenAI one-off in FQ2."
+        },
+        "forwardPE": {
+          "value": "22.2",
+          "sources": "SA:23.07|GF:21.28",
+          "confidence": "medium",
+          "note": "Range 21-23x. Sources differ slightly."
+        },
+        "evEbitda": {
+          "value": "17.3",
+          "sources": "SA:17.32",
+          "confidence": "medium",
+          "note": "Single source verified."
+        },
+        "peg": {
+          "value": "1.71",
+          "sources": "SA:1.71",
+          "confidence": "medium",
+          "note": ""
+        },
+        "ps": {
+          "value": "11.8",
+          "sources": "Calculated: $3.6T/305B. MCap from MF:$3.6T|SA:$3.6T",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev FQ2 FY26","value":"$81.3B","change":"+17% YoY","positive":true,"source":"SEC"},
-        {"label":"Azure Growth","value":"+39%","change":"Accelerating","positive":true,"source":"SEC"},
-        {"label":"Cloud Rev","value":"$46.7B","change":"+27%","positive":true,"source":"SEC"},
-        {"label":"GAAP EPS","value":"$5.16","change":"+60% (OpenAI)","positive":true,"source":"SEC"},
-        {"label":"nGAAP EPS","value":"$4.14","change":"+24%","positive":true,"source":"SEC"},
-        {"label":"Op Income","value":"$38.3B","change":"+21%","positive":true,"source":"SEC"}
+      "kpis": [
+        {
+          "label": "Rev FQ2 FY26",
+          "value": "$81.3B",
+          "change": "+17% YoY",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Azure Growth",
+          "value": "+39%",
+          "change": "Accelerating",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Cloud Rev",
+          "value": "$46.7B",
+          "change": "+27%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "GAAP EPS",
+          "value": "$5.16",
+          "change": "+60% (OpenAI)",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "nGAAP EPS",
+          "value": "$4.14",
+          "change": "+24%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Op Income",
+          "value": "$38.3B",
+          "change": "+21%",
+          "positive": true,
+          "source": "SEC"
+        }
       ],
-      "quarters":[
-        {"q":"FQ3 FY25","rev":"$70.1B","gr":"+13%","gm":"~69%","oi":"$32.0B","eps":"$3.46"},
-        {"q":"FQ4 FY25","rev":"$76.4B","gr":"+18%","gm":"~70%","oi":"$34.3B","eps":"$3.65"},
-        {"q":"FQ1 FY26","rev":"$77.7B","gr":"+18%","gm":"~70%","oi":"$35.6B","eps":"$4.13"},
-        {"q":"FQ2 FY26","rev":"$81.3B","gr":"+17%","gm":"~70%","oi":"$38.3B","eps":"$5.16/$4.14"}
+      "quarters": [
+        {
+          "q": "FQ3 FY25",
+          "rev": "$70.1B",
+          "gr": "+13%",
+          "gm": "~69%",
+          "oi": "$32.0B",
+          "eps": "$3.46"
+        },
+        {
+          "q": "FQ4 FY25",
+          "rev": "$76.4B",
+          "gr": "+18%",
+          "gm": "~70%",
+          "oi": "$34.3B",
+          "eps": "$3.65"
+        },
+        {
+          "q": "FQ1 FY26",
+          "rev": "$77.7B",
+          "gr": "+18%",
+          "gm": "~70%",
+          "oi": "$35.6B",
+          "eps": "$4.13"
+        },
+        {
+          "q": "FQ2 FY26",
+          "rev": "$81.3B",
+          "gr": "+17%",
+          "gm": "~70%",
+          "oi": "$38.3B",
+          "eps": "$5.16/$4.14"
+        }
       ],
-      "gaap":{"period":"FQ2 FY26","rows":[["Net Income","$38.5B","$30.9B","$7.6B OpenAI","NOTE"],["EPS","$5.16","$4.14","$1.02 OpenAI excl.","NOTE"]],"comment":"Large GAAP/non-GAAP discrepancy in FQ2 due to OpenAI investments. SBC ~3.5%. Trailing P/E ~25x appears low but reflects one-off GAAP boost."},
-      "earningsCall":{"date":"28 Jan 2026","period":"Q2 FY2026",
-        "highlights":["Revenue $81.3B (+17% YoY, +15% constant currency)","Azure +39% (+38% cc) driven by AI workloads","Intelligent Cloud segment $32.9B (+29%)","GAAP NI $38.5B (+60%) boosted by OpenAI investments","Non-GAAP NI $30.9B (+23%)","Returned $12.7B to shareholders (+32% YoY)"],
-        "guidance":"Nadella: We are only at the beginning phases of AI diffusion. Azure surpassed $75B annual revenue. CapEx growth rate for FY26 now expected above FY25 rate (previously guided slowdown, now accelerating).",
-        "qa":["OpenAI GAAP impact: $7.6B difference - CFO Hood indicated not expected at same scale in future quarters","CapEx revised upward: $34.9B in Q1, now accelerating vs previously guided slowdown. Driven by significant cloud customer demand","Copilot: Nadella stated AI business now larger than some of our biggest franchises but no specific revenue figures provided","More Personal Computing: $14.3B (-3%) was the weakest segment. Xbox content -5%, Windows flat"],
-        "source":"SEC filing, CNBC (Oct 2025 Q1 report), Microsoft IR press release"
+      "gaap": {
+        "period": "FQ2 FY26",
+        "rows": [
+          [
+            "Net Income",
+            "$38.5B",
+            "$30.9B",
+            "$7.6B OpenAI",
+            "NOTE"
+          ],
+          [
+            "EPS",
+            "$5.16",
+            "$4.14",
+            "$1.02 OpenAI excl.",
+            "NOTE"
+          ]
+        ],
+        "comment": "Large GAAP/non-GAAP discrepancy in FQ2 due to OpenAI investments. SBC ~3.5%. Trailing P/E ~25x appears low but reflects one-off GAAP boost."
       },
-      "sentiment":{"temperature":"Bullish","emoji":"green","summary":"Consensus: 32 Buy/3 Hold (TipRanks) Strong Buy. StockTwits Bullish but dipped after CapEx figures. Azure +39% viewed as strongest signal. Goldman Sachs and Morgan Stanley both bullish. Copilot monetization viewed as next key catalyst.","profiles":"Goldman Sachs (Buy), Morgan Stanley (OW), 32/35 analysts Buy (TipRanks), StockTwits (Bullish)"},
-      "bull":{"thesis":"Dominant AI platform with Azure+OpenAI, Copilot driving adoption, broadest product portfolio in tech.","args":["Azure +39% accelerating driven by AI (SEC confirmed)","Microsoft Cloud $46.7B/Q = $180B+ annualized","Copilot integration in Office, GitHub, Dynamics creates stickiness","Diversified: Cloud+Office+LinkedIn+Gaming = low concentration risk","CapEx $34.9B/Q signals strong customer demand"],"risk":"OpenAI dependency - if partnership weakens","fvLow":420,"fvHigh":520,"conviction":"High"},
-      "bear":{"thesis":"Massive CapEx without clear ROI evidence yet. OpenAI relationship complex.","args":["CapEx ~$35B/Q without guaranteed return","SBC ~3.5% and increasing - dilutes shareholders","GAAP/non-GAAP spread of $1.02/share is concerning","Copilot monetization still unclear in specifics","Azure growth may be capacity-driven rather than demand-driven"],"risk":"If Copilot monetization truly takes off everything changes","fvLow":350,"fvHigh":420,"conviction":"Medium"},
-      "verdict":"Both agree: best positioned for enterprise AI. Diverge on CapEx ROI. Azure +39% acceleration gives bull stronger data support."
+      "earningsCall": {
+        "date": "28 Jan 2026",
+        "period": "Q2 FY2026",
+        "highlights": [
+          "Revenue $81.3B (+17% YoY, +15% constant currency)",
+          "Azure +39% (+38% cc) driven by AI workloads",
+          "Intelligent Cloud segment $32.9B (+29%)",
+          "GAAP NI $38.5B (+60%) boosted by OpenAI investments",
+          "Non-GAAP NI $30.9B (+23%)",
+          "Returned $12.7B to shareholders (+32% YoY)"
+        ],
+        "guidance": "Nadella: We are only at the beginning phases of AI diffusion. Azure surpassed $75B annual revenue. CapEx growth rate for FY26 now expected above FY25 rate (previously guided slowdown, now accelerating).",
+        "qa": [
+          "OpenAI GAAP impact: $7.6B difference - CFO Hood indicated not expected at same scale in future quarters",
+          "CapEx revised upward: $34.9B in Q1, now accelerating vs previously guided slowdown. Driven by significant cloud customer demand",
+          "Copilot: Nadella stated AI business now larger than some of our biggest franchises but no specific revenue figures provided",
+          "More Personal Computing: $14.3B (-3%) was the weakest segment. Xbox content -5%, Windows flat"
+        ],
+        "source": "SEC filing, CNBC (Oct 2025 Q1 report), Microsoft IR press release"
+      },
+      "sentiment": {
+        "temperature": "Bullish",
+        "emoji": "green",
+        "summary": "Consensus: 32 Buy/3 Hold (TipRanks) Strong Buy. StockTwits Bullish but dipped after CapEx figures. Azure +39% viewed as strongest signal. Goldman Sachs and Morgan Stanley both bullish. Copilot monetization viewed as next key catalyst.",
+        "profiles": "Goldman Sachs (Buy), Morgan Stanley (OW), 32/35 analysts Buy (TipRanks), StockTwits (Bullish)"
+      },
+      "bull": {
+        "thesis": "Dominant AI platform with Azure+OpenAI, Copilot driving adoption, broadest product portfolio in tech.",
+        "args": [
+          "Azure +39% accelerating driven by AI (SEC confirmed)",
+          "Microsoft Cloud $46.7B/Q = $180B+ annualized",
+          "Copilot integration in Office, GitHub, Dynamics creates stickiness",
+          "Diversified: Cloud+Office+LinkedIn+Gaming = low concentration risk",
+          "CapEx $34.9B/Q signals strong customer demand"
+        ],
+        "risk": "OpenAI dependency - if partnership weakens",
+        "fvLow": 420,
+        "fvHigh": 520,
+        "conviction": "High"
+      },
+      "bear": {
+        "thesis": "Massive CapEx without clear ROI evidence yet. OpenAI relationship complex.",
+        "args": [
+          "CapEx ~$35B/Q without guaranteed return",
+          "SBC ~3.5% and increasing - dilutes shareholders",
+          "GAAP/non-GAAP spread of $1.02/share is concerning",
+          "Copilot monetization still unclear in specifics",
+          "Azure growth may be capacity-driven rather than demand-driven"
+        ],
+        "risk": "If Copilot monetization truly takes off everything changes",
+        "fvLow": 350,
+        "fvHigh": 420,
+        "conviction": "Medium"
+      },
+      "verdict": "Both agree: best positioned for enterprise AI. Diverge on CapEx ROI. Azure +39% acceleration gives bull stronger data support."
     },
     "GOOGL": {
-      "name":"Alphabet Inc.","sector":"Search/Cloud/AI","price":"$298.52","mcap":"$2.0T","w52":"$140-349",
+      "name": "Alphabet Inc.",
+      "sector": "Search/Cloud/AI",
+      "price": "$302.02",
+      "mcap": "$3.7T",
+      "w52": "$141-349",
       "valuation": {
-        "trailingPE":{"value":"28.4","sources":"SA:28.43|GF:27.62|GOOG:28.81","confidence":"high","note":"3 sources agree 27-29x range."},
-        "forwardPE":{"value":"26.3","sources":"SA:26.54|GF:26.06","confidence":"high","note":"Sources agree ~26x."},
-        "evEbitda":{"value":"24.3","sources":"SA:24.33|GOOG:24.70","confidence":"high","note":"Two share classes confirm."},
-        "peg":{"value":"1.72","sources":"SA:1.72","confidence":"medium","note":""},
-        "ps":{"value":"5.0","sources":"Derived: $2.0T/$403B","confidence":"high","note":""}
+        "trailingPE": {
+          "value": "28.4",
+          "sources": "SA:28.43|GF:27.62|GOOG:28.81",
+          "confidence": "high",
+          "note": "3 sources agree 27-29x range."
+        },
+        "forwardPE": {
+          "value": "26.3",
+          "sources": "SA:26.54|GF:26.06",
+          "confidence": "high",
+          "note": "Sources agree ~26x."
+        },
+        "evEbitda": {
+          "value": "24.3",
+          "sources": "SA:24.33|GOOG:24.70",
+          "confidence": "high",
+          "note": "Two share classes confirm."
+        },
+        "peg": {
+          "value": "1.72",
+          "sources": "SA:1.72",
+          "confidence": "medium",
+          "note": ""
+        },
+        "ps": {
+          "value": "9.2",
+          "sources": "Calculated: $3.7T/403B. MCap from CompaniesMarketCap:$3.614T|SA:$3.64T|MacroTrends:$3.698T",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev Q4 25","value":"$113.8B","change":"+18% YoY","positive":true,"source":"SEC"},
-        {"label":"Net Inc Q4","value":"$34.5B","change":"+30%","positive":true,"source":"SEC+CNBC"},
-        {"label":"Cloud Q4","value":"$17.9B","change":"+34%","positive":true,"source":"SEC"},
-        {"label":"Search Rev Q4","value":"~$72B est","change":"+17%","positive":true,"source":"SEC derived"},
-        {"label":"CapEx 26 guide","value":"$175-185B","change":"Massive increase","positive":false,"source":"Earnings call"},
-        {"label":"Cloud backlog","value":"$155B","change":"Strong","positive":true,"source":"Earnings call"}
+      "kpis": [
+        {
+          "label": "Rev Q4 25",
+          "value": "$113.8B",
+          "change": "+18% YoY",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Net Inc Q4",
+          "value": "$34.5B",
+          "change": "+30%",
+          "positive": true,
+          "source": "SEC+CNBC"
+        },
+        {
+          "label": "Cloud Q4",
+          "value": "$17.9B",
+          "change": "+34%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Search Rev Q4",
+          "value": "~$72B est",
+          "change": "+17%",
+          "positive": true,
+          "source": "SEC derived"
+        },
+        {
+          "label": "CapEx 26 guide",
+          "value": "$175-185B",
+          "change": "Massive increase",
+          "positive": false,
+          "source": "Earnings call"
+        },
+        {
+          "label": "Cloud backlog",
+          "value": "$155B",
+          "change": "Strong",
+          "positive": true,
+          "source": "Earnings call"
+        }
       ],
-      "quarters":[
-        {"q":"Q1 25","rev":"$90.2B","gr":"+12%","gm":"~58%","oi":"$30.6B","eps":"$2.31"},
-        {"q":"Q2 25","rev":"$96.4B","gr":"+14%","gm":"~59%","oi":"$31.5B","eps":"$2.31"},
-        {"q":"Q3 25","rev":"$102.3B","gr":"+16%","gm":"~58%","oi":"$31.2B*","eps":"$3.10 adj"},
-        {"q":"Q4 25","rev":"$113.8B","gr":"+18%","gm":"~59%","oi":"~$40B","eps":"~$2.87"}
+      "quarters": [
+        {
+          "q": "Q1 25",
+          "rev": "$90.2B",
+          "gr": "+12%",
+          "gm": "~58%",
+          "oi": "$30.6B",
+          "eps": "$2.31"
+        },
+        {
+          "q": "Q2 25",
+          "rev": "$96.4B",
+          "gr": "+14%",
+          "gm": "~59%",
+          "oi": "$31.5B",
+          "eps": "$2.31"
+        },
+        {
+          "q": "Q3 25",
+          "rev": "$102.3B",
+          "gr": "+16%",
+          "gm": "~58%",
+          "oi": "$31.2B*",
+          "eps": "$3.10 adj"
+        },
+        {
+          "q": "Q4 25",
+          "rev": "$113.8B",
+          "gr": "+18%",
+          "gm": "~59%",
+          "oi": "~$40B",
+          "eps": "~$2.87"
+        }
       ],
-      "gaap":{"period":"Q3 2025","rows":[["Op Income","$31.2B","$34.7B","$3.5B EC fine excluded","NOTE"],["EPS","$2.87","$3.10 adj","$0.23 EC+equity gains","NOTE"]],"comment":"SBC ~5% of revenue (declining as share). EC fines complicate comparison. EV/EBITDA 24x partially driven by equity securities gains volatility."},
-      "earningsCall":{"date":"4 Feb 2026","period":"Q4 2025",
-        "highlights":["Revenue $113.8B (+18% YoY) growth accelerating","Google Cloud $17.9B approximately +34% strongest growth among Big 3 clouds","Google Services $95.9B (+14%): Search +17%, Subscriptions/Devices +17%, YouTube ads +9%","Net income $34.5B (+30% YoY)","CapEx guidance 2026: $175-185B dramatic increase announced"],
-        "guidance":"Sundar Pichai: We are seeing our AI investments drive revenue and growth across the board. CapEx $175-185B for 2026 allocated to AI infra, Cloud demand, and Google Services improvement. Ashkenazi: investments in AI compute capacity for DeepMind and strategic other bets. Cloud backlog $155B.",
-        "qa":["CapEx $175-185B: CFO Ashkenazi defended citing significant cloud customer demand as primary driver","Search and AI: Pichai emphasized AI Overviews and AI Mode drive increased query volume not cannibalization. Search +17% confirms this","YouTube: Ads +9% was slower than Search/Cloud growth. But Shorts monetization improving","Other Bets: Waymo highlighted positively. Other Bets outside Waymo generated -$1.2B loss in Q1 2025","EC fines: $3.5B one-time charge in Q3 2025 excluded from non-GAAP results as per industry standard"],
-        "source":"CNBC (4 Feb 2026), SEC filing, Alphabet IR press release"
+      "gaap": {
+        "period": "Q3 2025",
+        "rows": [
+          [
+            "Op Income",
+            "$31.2B",
+            "$34.7B",
+            "$3.5B EC fine excluded",
+            "NOTE"
+          ],
+          [
+            "EPS",
+            "$2.87",
+            "$3.10 adj",
+            "$0.23 EC+equity gains",
+            "NOTE"
+          ]
+        ],
+        "comment": "SBC ~5% of revenue (declining as share). EC fines complicate comparison. EV/EBITDA 24x partially driven by equity securities gains volatility."
       },
-      "sentiment":{"temperature":"Bullish with momentum","emoji":"green","summary":"Cloud +48% growth generated extreme enthusiasm. Dan Ives (Wedbush): no doubt GOOGL will grow via Apple partnership and Cloud expansion. StockTwits Extremely Bullish post-Q4. However 65% rally in 6 months limits near-term upside projections. DOJ antitrust remains background risk.","profiles":"Dan Ives/Wedbush (Bull), StockTwits (Extremely Bullish), Goldman Sachs (Buy), Analysts note weakest upside projection of Big 3 clouds after rally"},
-      "bull":{"thesis":"Most undervalued Magnificent 7 stock. Search+AI strengthens moat, Cloud +34% accelerating, YouTube monetizing better.","args":["Forward P/E ~26x most attractive in Mag7 relative to growth","Google Cloud $17.9B/Q +34% with $155B backlog (SEC/earnings call)","Search+AI Overviews drives increased query volume not cannibalization","YouTube ads+subscriptions combined >$50B annualized","Waymo provides real AI leadership in autonomous driving"],"risk":"DOJ antitrust potential breakup or behavioral remedies","fvLow":310,"fvHigh":400,"conviction":"High"},
-      "bear":{"thesis":"CapEx $175-185B in 2026 is alarming. Search could be disrupted by AI assistants. Antitrust is real.","args":["CapEx $175-185B represents double the 2024 level with unclear ROI timeline","AI chatbots (ChatGPT, Perplexity) could erode search dominance over time","DOJ antitrust represents genuine structural risk","SBC ~5% of revenue is among highest in peer group","Other Bets excluding Waymo remain persistent cash drain"],"risk":"If AI Overviews actually strengthens the search moat rather than eroding it","fvLow":220,"fvHigh":300,"conviction":"Medium"},
-      "verdict":"Both agree: exceptional assets across Search, Cloud, YouTube. Diverge on whether AI disrupts or strengthens search. Data supports bull - Search revenue +17% in Q4 is accelerating despite the AI fear narrative."
+      "earningsCall": {
+        "date": "4 Feb 2026",
+        "period": "Q4 2025",
+        "highlights": [
+          "Revenue $113.8B (+18% YoY) growth accelerating",
+          "Google Cloud $17.9B approximately +34% strongest growth among Big 3 clouds",
+          "Google Services $95.9B (+14%): Search +17%, Subscriptions/Devices +17%, YouTube ads +9%",
+          "Net income $34.5B (+30% YoY)",
+          "CapEx guidance 2026: $175-185B dramatic increase announced"
+        ],
+        "guidance": "Sundar Pichai: We are seeing our AI investments drive revenue and growth across the board. CapEx $175-185B for 2026 allocated to AI infra, Cloud demand, and Google Services improvement. Ashkenazi: investments in AI compute capacity for DeepMind and strategic other bets. Cloud backlog $155B.",
+        "qa": [
+          "CapEx $175-185B: CFO Ashkenazi defended citing significant cloud customer demand as primary driver",
+          "Search and AI: Pichai emphasized AI Overviews and AI Mode drive increased query volume not cannibalization. Search +17% confirms this",
+          "YouTube: Ads +9% was slower than Search/Cloud growth. But Shorts monetization improving",
+          "Other Bets: Waymo highlighted positively. Other Bets outside Waymo generated -$1.2B loss in Q1 2025",
+          "EC fines: $3.5B one-time charge in Q3 2025 excluded from non-GAAP results as per industry standard"
+        ],
+        "source": "CNBC (4 Feb 2026), SEC filing, Alphabet IR press release"
+      },
+      "sentiment": {
+        "temperature": "Bullish with momentum",
+        "emoji": "green",
+        "summary": "Cloud +48% growth generated extreme enthusiasm. Dan Ives (Wedbush): no doubt GOOGL will grow via Apple partnership and Cloud expansion. StockTwits Extremely Bullish post-Q4. However 65% rally in 6 months limits near-term upside projections. DOJ antitrust remains background risk.",
+        "profiles": "Dan Ives/Wedbush (Bull), StockTwits (Extremely Bullish), Goldman Sachs (Buy), Analysts note weakest upside projection of Big 3 clouds after rally"
+      },
+      "bull": {
+        "thesis": "Most undervalued Magnificent 7 stock. Search+AI strengthens moat, Cloud +34% accelerating, YouTube monetizing better.",
+        "args": [
+          "Forward P/E ~26x most attractive in Mag7 relative to growth",
+          "Google Cloud $17.9B/Q +34% with $155B backlog (SEC/earnings call)",
+          "Search+AI Overviews drives increased query volume not cannibalization",
+          "YouTube ads+subscriptions combined >$50B annualized",
+          "Waymo provides real AI leadership in autonomous driving"
+        ],
+        "risk": "DOJ antitrust potential breakup or behavioral remedies",
+        "fvLow": 310,
+        "fvHigh": 400,
+        "conviction": "High"
+      },
+      "bear": {
+        "thesis": "CapEx $175-185B in 2026 is alarming. Search could be disrupted by AI assistants. Antitrust is real.",
+        "args": [
+          "CapEx $175-185B represents double the 2024 level with unclear ROI timeline",
+          "AI chatbots (ChatGPT, Perplexity) could erode search dominance over time",
+          "DOJ antitrust represents genuine structural risk",
+          "SBC ~5% of revenue is among highest in peer group",
+          "Other Bets excluding Waymo remain persistent cash drain"
+        ],
+        "risk": "If AI Overviews actually strengthens the search moat rather than eroding it",
+        "fvLow": 220,
+        "fvHigh": 300,
+        "conviction": "Medium"
+      },
+      "verdict": "Both agree: exceptional assets across Search, Cloud, YouTube. Diverge on whether AI disrupts or strengthens search. Data supports bull - Search revenue +17% in Q4 is accelerating despite the AI fear narrative."
     },
     "META": {
-      "name":"Meta Platforms Inc.","sector":"Social Media/Advertising","price":"$659.47","mcap":"$1.7T","w52":"$475-740",
+      "name": "Meta Platforms Inc.",
+      "sector": "Social Media/Advertising",
+      "price": "$603.80",
+      "mcap": "$1.5T",
+      "w52": "$475-740",
       "valuation": {
-        "trailingPE":{"value":"28.1","sources":"SA:28.11|GF:~28","confidence":"high","note":"Sources agree ~28x."},
-        "forwardPE":{"value":"21.8","sources":"SA:21.84|GF:22.08","confidence":"high","note":"Lowest forward P/E in the entire group."},
-        "evEbitda":{"value":"16.3","sources":"SA:16.26","confidence":"medium","note":"Single source verified."},
-        "peg":{"value":"1.05","sources":"SA:1.05","confidence":"medium","note":"Most attractive PEG ratio in Magnificent 7."},
-        "ps":{"value":"8.5","sources":"Derived: $1.7T/$201B","confidence":"high","note":""}
+        "trailingPE": {
+          "value": "28.1",
+          "sources": "SA:28.11|GF:~28",
+          "confidence": "high",
+          "note": "Sources agree ~28x."
+        },
+        "forwardPE": {
+          "value": "21.8",
+          "sources": "SA:21.84|GF:22.08",
+          "confidence": "high",
+          "note": "Lowest forward P/E in the entire group."
+        },
+        "evEbitda": {
+          "value": "16.3",
+          "sources": "SA:16.26",
+          "confidence": "medium",
+          "note": "Single source verified."
+        },
+        "peg": {
+          "value": "1.05",
+          "sources": "SA:1.05",
+          "confidence": "medium",
+          "note": "Most attractive PEG ratio in Magnificent 7."
+        },
+        "ps": {
+          "value": "7.5",
+          "sources": "Calculated: $1.5T/201B. MCap from GoogleFinance:$1.5T|SA:$1.5T",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev Q4 25","value":"$59.9B","change":"+24% YoY","positive":true,"source":"SEC+CNBC"},
-        {"label":"EPS Q4","value":"$8.88","change":"+11%","positive":true,"source":"SEC"},
-        {"label":"FY25 Revenue","value":"$200.6B","change":"+22%","positive":true,"source":"SEC"},
-        {"label":"Op Margin","value":"41%","change":"$24.7B OI","positive":true,"source":"SEC"},
-        {"label":"DAP","value":"3.54B","change":"+8% YoY","positive":true,"source":"SEC"},
-        {"label":"Cash","value":"$81.6B","change":"Net debt ~-$3.5B","positive":true,"source":"SA"}
+      "kpis": [
+        {
+          "label": "Rev Q4 25",
+          "value": "$59.9B",
+          "change": "+24% YoY",
+          "positive": true,
+          "source": "SEC+CNBC"
+        },
+        {
+          "label": "EPS Q4",
+          "value": "$8.88",
+          "change": "+11%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "FY25 Revenue",
+          "value": "$200.6B",
+          "change": "+22%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Op Margin",
+          "value": "41%",
+          "change": "$24.7B OI",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "DAP",
+          "value": "3.54B",
+          "change": "+8% YoY",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Cash",
+          "value": "$81.6B",
+          "change": "Net debt ~-$3.5B",
+          "positive": true,
+          "source": "SA"
+        }
       ],
-      "quarters":[
-        {"q":"Q1 25","rev":"$42.3B","gr":"+16%","gm":"~82%","oi":"$17.6B","eps":"$6.43"},
-        {"q":"Q2 25","rev":"$47.5B","gr":"+22%","gm":"~82%","oi":"$20.5B","eps":"$7.14"},
-        {"q":"Q3 25","rev":"$51.2B","gr":"+26%","gm":"~82%","oi":"$20.5B","eps":"$7.25 adj"},
-        {"q":"Q4 25","rev":"$59.9B","gr":"+24%","gm":"~81%","oi":"$24.7B","eps":"$8.88"}
+      "quarters": [
+        {
+          "q": "Q1 25",
+          "rev": "$42.3B",
+          "gr": "+16%",
+          "gm": "~82%",
+          "oi": "$17.6B",
+          "eps": "$6.43"
+        },
+        {
+          "q": "Q2 25",
+          "rev": "$47.5B",
+          "gr": "+22%",
+          "gm": "~82%",
+          "oi": "$20.5B",
+          "eps": "$7.14"
+        },
+        {
+          "q": "Q3 25",
+          "rev": "$51.2B",
+          "gr": "+26%",
+          "gm": "~82%",
+          "oi": "$20.5B",
+          "eps": "$7.25 adj"
+        },
+        {
+          "q": "Q4 25",
+          "rev": "$59.9B",
+          "gr": "+24%",
+          "gm": "~81%",
+          "oi": "$24.7B",
+          "eps": "$8.88"
+        }
       ],
-      "gaap":{"period":"Q4 2025","rows":[["FY25 Net Income","$60.5B","~$68B adj","~$7.5B non-cash tax","NOTE"],["Reality Labs Q4","-$3.8B","N/A","Continues at similar level 2026","WARN"]],"comment":"Large tax effect in FY2025 (30% effective rate vs 12% in 2024). Reality Labs burning ~$15B+/year. SBC approximately 4% of revenue."},
-      "earningsCall":{"date":"28 Jan 2026","period":"Q4 2025",
-        "highlights":["Revenue $59.9B (+24% YoY) beating consensus estimates","EPS $8.88 (+11% YoY) beat estimates by approximately 8%","Operating income $24.7B with 41% operating margin","3.54B daily active people (+8% YoY), ad impressions +14%, price per ad +10%","Reality Labs posted -$3.8B loss in Q4","Cash and marketable securities total $81.6B"],
-        "guidance":"Q1 2026 revenue: $53.5-56.5B (well above consensus of ~$51.4B). Full year 2026 total expenses: $162-169B. CapEx: $115-135B. Reality Labs operating losses expected to remain similar to 2025 levels.",
-        "qa":["CapEx $115-135B: CFO explained majority driven by infrastructure costs including third-party cloud spend, depreciation, and operating expenses. Second largest driver is technical talent compensation","Reality Labs -$15B+/year: No change expected for 2026. Intense ROI debate continues among analysts","AI monetization: Advantage+ adoption driving significant improvements in ad performance and engagement","Zuckerberg statement: I am looking forward to advancing personal superintelligence for everyone in the world in 2026","Threads: Mentioned as growing platform but not separately reported in financial breakdowns"],
-        "source":"CNBC (28 Jan 2026), SEC filing, Alpha-Sense earnings highlights, Investing.com"
+      "gaap": {
+        "period": "Q4 2025",
+        "rows": [
+          [
+            "FY25 Net Income",
+            "$60.5B",
+            "~$68B adj",
+            "~$7.5B non-cash tax",
+            "NOTE"
+          ],
+          [
+            "Reality Labs Q4",
+            "-$3.8B",
+            "N/A",
+            "Continues at similar level 2026",
+            "WARN"
+          ]
+        ],
+        "comment": "Large tax effect in FY2025 (30% effective rate vs 12% in 2024). Reality Labs burning ~$15B+/year. SBC approximately 4% of revenue."
       },
-      "sentiment":{"temperature":"Split - Institutional Bull vs Retail Bear","emoji":"yellow","summary":"Morgan Stanley Nowak: Overweight $750 PT, META one of a handful of companies that can leverage AI for growth. Wedbush: top advertising pick for 2026. Baird: buy the dip PT $815. 90% of 67 analysts have Buy ratings (Koyfin). However StockTwits retail sentiment has been Bearish for months. Billionaire Stephen Mandel at Lone Pine dumped entire META position (Motley Fool Feb 2026).","profiles":"Morgan Stanley Nowak ($750), Wedbush (Top Ad Pick), Baird ($815), Stephen Mandel/Lone Pine (Sold All), StockTwits (Bearish)"},
-      "bull":{"thesis":"Most efficient AI-driven advertising platform in the world. 3.5B+ daily users, Reels monetization accelerating.","args":["Revenue +24% Q4 driven by AI recommendations (SEC confirmed)","3.54B DAP represents unmatched global reach (SEC)","Dual growth driver: Ad impressions +14% AND price per ad +10% (SEC)","Q1 2026 guidance $53.5-56.5B well above consensus (earnings call)","Forward P/E 21.8x with PEG 1.05 is cheapest quality in Mag7"],"risk":"CapEx $115-135B in 2026 is an enormous investment","fvLow":650,"fvHigh":820,"conviction":"High"},
-      "bear":{"thesis":"Reality Labs draining ~$15B/year with no visible return. CapEx aggressive. Regulatory risks mounting.","args":["Reality Labs -$3.8B in Q4 alone not delivering results (SEC)","CapEx $115-135B equals approximately 65% of full year revenue (earnings call)","Total expenses guidance $162-169B for 2026 shows costs escalating","EU DSA, antitrust concerns, child safety regulations","Zuckerberg dual-class control with no checks and balances"],"risk":"If AI-driven ad targeting continues improving the ROI on CapEx could be enormous","fvLow":480,"fvHigh":620,"conviction":"Medium"},
-      "verdict":"Both agree: core advertising business is exceptional. Diverge on CapEx magnitude and Reality Labs viability. Forward P/E 21.8x plus PEG 1.05 makes META the most attractive risk/reward in the group if CapEx pays off."
+      "earningsCall": {
+        "date": "28 Jan 2026",
+        "period": "Q4 2025",
+        "highlights": [
+          "Revenue $59.9B (+24% YoY) beating consensus estimates",
+          "EPS $8.88 (+11% YoY) beat estimates by approximately 8%",
+          "Operating income $24.7B with 41% operating margin",
+          "3.54B daily active people (+8% YoY), ad impressions +14%, price per ad +10%",
+          "Reality Labs posted -$3.8B loss in Q4",
+          "Cash and marketable securities total $81.6B"
+        ],
+        "guidance": "Q1 2026 revenue: $53.5-56.5B (well above consensus of ~$51.4B). Full year 2026 total expenses: $162-169B. CapEx: $115-135B. Reality Labs operating losses expected to remain similar to 2025 levels.",
+        "qa": [
+          "CapEx $115-135B: CFO explained majority driven by infrastructure costs including third-party cloud spend, depreciation, and operating expenses. Second largest driver is technical talent compensation",
+          "Reality Labs -$15B+/year: No change expected for 2026. Intense ROI debate continues among analysts",
+          "AI monetization: Advantage+ adoption driving significant improvements in ad performance and engagement",
+          "Zuckerberg statement: I am looking forward to advancing personal superintelligence for everyone in the world in 2026",
+          "Threads: Mentioned as growing platform but not separately reported in financial breakdowns"
+        ],
+        "source": "CNBC (28 Jan 2026), SEC filing, Alpha-Sense earnings highlights, Investing.com"
+      },
+      "sentiment": {
+        "temperature": "Split - Institutional Bull vs Retail Bear",
+        "emoji": "yellow",
+        "summary": "Morgan Stanley Nowak: Overweight $750 PT, META one of a handful of companies that can leverage AI for growth. Wedbush: top advertising pick for 2026. Baird: buy the dip PT $815. 90% of 67 analysts have Buy ratings (Koyfin). However StockTwits retail sentiment has been Bearish for months. Billionaire Stephen Mandel at Lone Pine dumped entire META position (Motley Fool Feb 2026).",
+        "profiles": "Morgan Stanley Nowak ($750), Wedbush (Top Ad Pick), Baird ($815), Stephen Mandel/Lone Pine (Sold All), StockTwits (Bearish)"
+      },
+      "bull": {
+        "thesis": "Most efficient AI-driven advertising platform in the world. 3.5B+ daily users, Reels monetization accelerating.",
+        "args": [
+          "Revenue +24% Q4 driven by AI recommendations (SEC confirmed)",
+          "3.54B DAP represents unmatched global reach (SEC)",
+          "Dual growth driver: Ad impressions +14% AND price per ad +10% (SEC)",
+          "Q1 2026 guidance $53.5-56.5B well above consensus (earnings call)",
+          "Forward P/E 21.8x with PEG 1.05 is cheapest quality in Mag7"
+        ],
+        "risk": "CapEx $115-135B in 2026 is an enormous investment",
+        "fvLow": 650,
+        "fvHigh": 820,
+        "conviction": "High"
+      },
+      "bear": {
+        "thesis": "Reality Labs draining ~$15B/year with no visible return. CapEx aggressive. Regulatory risks mounting.",
+        "args": [
+          "Reality Labs -$3.8B in Q4 alone not delivering results (SEC)",
+          "CapEx $115-135B equals approximately 65% of full year revenue (earnings call)",
+          "Total expenses guidance $162-169B for 2026 shows costs escalating",
+          "EU DSA, antitrust concerns, child safety regulations",
+          "Zuckerberg dual-class control with no checks and balances"
+        ],
+        "risk": "If AI-driven ad targeting continues improving the ROI on CapEx could be enormous",
+        "fvLow": 480,
+        "fvHigh": 620,
+        "conviction": "Medium"
+      },
+      "verdict": "Both agree: core advertising business is exceptional. Diverge on CapEx magnitude and Reality Labs viability. Forward P/E 21.8x plus PEG 1.05 makes META the most attractive risk/reward in the group if CapEx pays off."
     },
     "AMZN": {
-      "name":"Amazon.com Inc.","sector":"E-commerce/Cloud","price":"$218.89","mcap":"$2.3T","w52":"$151-242",
+      "name": "Amazon.com Inc.",
+      "sector": "E-commerce/Cloud",
+      "price": "$210.15",
+      "mcap": "$2.2T",
+      "w52": "$151-242",
       "valuation": {
-        "trailingPE":{"value":"30.2","sources":"SA:30.24|GF:~30","confidence":"high","note":"Sources agree ~30x."},
-        "forwardPE":{"value":"28.0","sources":"SA:28.10|GF:27.79","confidence":"high","note":"Strong agreement ~28x."},
-        "evEbitda":{"value":"16.3","sources":"SA:16.25","confidence":"medium","note":"Appears cheap but compare with EV/FCF."},
-        "evFcf":{"value":"307.7","sources":"SA:307.72","confidence":"medium","note":"THIS is the real story - CapEx is crushing free cash flow."},
-        "peg":{"value":"1.44","sources":"SA:1.44","confidence":"medium","note":""},
-        "ps":{"value":"3.2","sources":"Derived: $2.3T/$717B","confidence":"high","note":"Lowest P/S in entire Mag7 group."}
+        "trailingPE": {
+          "value": "30.2",
+          "sources": "SA:30.24|GF:~30",
+          "confidence": "high",
+          "note": "Sources agree ~30x."
+        },
+        "forwardPE": {
+          "value": "28.0",
+          "sources": "SA:28.10|GF:27.79",
+          "confidence": "high",
+          "note": "Strong agreement ~28x."
+        },
+        "evEbitda": {
+          "value": "16.3",
+          "sources": "SA:16.25",
+          "confidence": "medium",
+          "note": "Appears cheap but compare with EV/FCF."
+        },
+        "evFcf": {
+          "value": "307.7",
+          "sources": "SA:307.72",
+          "confidence": "medium",
+          "note": "THIS is the real story - CapEx is crushing free cash flow."
+        },
+        "peg": {
+          "value": "1.44",
+          "sources": "SA:1.44",
+          "confidence": "medium",
+          "note": ""
+        },
+        "ps": {
+          "value": "3.1",
+          "sources": "Calculated: $2.2T/717B. MCap from MF:$2.2T|SA:$2.2T",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev Q4 25","value":"$213.4B","change":"+14% YoY","positive":true,"source":"SEC"},
-        {"label":"AWS Q4","value":"$35.6B","change":"+24% (13Q high)","positive":true,"source":"SEC"},
-        {"label":"Op Inc Q4","value":"$25.0B","change":"incl $2.4B charges","positive":true,"source":"SEC"},
-        {"label":"EPS Q4","value":"$1.95","change":"+5% YoY","positive":true,"source":"SEC"},
-        {"label":"FY25 Revenue","value":"$716.9B","change":"+12%","positive":true,"source":"SEC"},
-        {"label":"AWS Backlog","value":"$244B","change":"+40% YoY","positive":true,"source":"Earnings call"}
+      "kpis": [
+        {
+          "label": "Rev Q4 25",
+          "value": "$213.4B",
+          "change": "+14% YoY",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "AWS Q4",
+          "value": "$35.6B",
+          "change": "+24% (13Q high)",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "Op Inc Q4",
+          "value": "$25.0B",
+          "change": "incl $2.4B charges",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "EPS Q4",
+          "value": "$1.95",
+          "change": "+5% YoY",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "FY25 Revenue",
+          "value": "$716.9B",
+          "change": "+12%",
+          "positive": true,
+          "source": "SEC"
+        },
+        {
+          "label": "AWS Backlog",
+          "value": "$244B",
+          "change": "+40% YoY",
+          "positive": true,
+          "source": "Earnings call"
+        }
       ],
-      "quarters":[
-        {"q":"Q1 25","rev":"$175.5B","gr":"+10%","gm":"~49%","oi":"$20.2B","eps":"$1.59"},
-        {"q":"Q2 25","rev":"$179.5B","gr":"+11%","gm":"~50%","oi":"$21.1B","eps":"$1.62"},
-        {"q":"Q3 25","rev":"$148.5B","gr":"+11%","gm":"~50%","oi":"$20.0B","eps":"$1.47"},
-        {"q":"Q4 25","rev":"$213.4B","gr":"+14%","gm":"~50%","oi":"$25.0B","eps":"$1.95"}
+      "quarters": [
+        {
+          "q": "Q1 25",
+          "rev": "$175.5B",
+          "gr": "+10%",
+          "gm": "~49%",
+          "oi": "$20.2B",
+          "eps": "$1.59"
+        },
+        {
+          "q": "Q2 25",
+          "rev": "$179.5B",
+          "gr": "+11%",
+          "gm": "~50%",
+          "oi": "$21.1B",
+          "eps": "$1.62"
+        },
+        {
+          "q": "Q3 25",
+          "rev": "$148.5B",
+          "gr": "+11%",
+          "gm": "~50%",
+          "oi": "$20.0B",
+          "eps": "$1.47"
+        },
+        {
+          "q": "Q4 25",
+          "rev": "$213.4B",
+          "gr": "+14%",
+          "gm": "~50%",
+          "oi": "$25.0B",
+          "eps": "$1.95"
+        }
       ],
-      "gaap":{"period":"Q4 2025","rows":[["Op Income","$25.0B","$27.4B adj","$2.4B Italy tax+severance+impairments","NOTE"],["EPS","$1.95","~$2.17 adj","~$0.22 special charges excluded","NOTE"]],"comment":"Q4 included $2.4B in one-time charges. Adjusted op income of $27.4B stronger than headline. Critical insight: EV/FCF of 308x shows that CapEx is crushing free cash flow even though EV/EBITDA of 16x appears misleadingly cheap. SBC approximately 3% of revenue."},
-      "earningsCall":{"date":"5 Feb 2026","period":"Q4 2025",
-        "highlights":["Revenue $213.4B (+14% YoY, +12% cc) beat consensus $211.3B","AWS $35.6B (+24% YoY) fastest growth rate in 13 quarters","Operating income $25.0B including $2.4B in special charges","EPS $1.95 (+5%) narrowly missed consensus by $0.01","Full year 2025 revenue $716.9B (+12% YoY)","AWS backlog grew to $244B (+40% YoY)"],
-        "guidance":"Q1 2026: Revenue $173.5-178.5B. Operating income $16.5-21.5B. CapEx planned at $200B for 2026 (up dramatically from expected $150B). CEO Jassy: every customer experience that we know of today is going to be reinvented through AI.",
-        "qa":["CapEx $200B shock caused 10% stock drop next day. Jassy defended: As fast as we install AI capacity it gets monetized","AWS backlog $244B (+40%): Strong pipeline but analysts questioned conversion rate and timeline","Advertising $21.3B (+23%): High margin business, Prime Video ads working well","Bedrock has reached multi-billion dollar ARR with customer spend growing 60% quarter-over-quarter. Trainium custom silicon crossed $10B+ annual run rate","Layoffs of 16K employees framed as resource reallocation despite record level investment. AWS operating margin 35% (+40bps YoY)"],
-        "source":"SEC filing (5 Feb 2026), CNBC, Investing.com, Alpha-Sense earnings highlights"
+      "gaap": {
+        "period": "Q4 2025",
+        "rows": [
+          [
+            "Op Income",
+            "$25.0B",
+            "$27.4B adj",
+            "$2.4B Italy tax+severance+impairments",
+            "NOTE"
+          ],
+          [
+            "EPS",
+            "$1.95",
+            "~$2.17 adj",
+            "~$0.22 special charges excluded",
+            "NOTE"
+          ]
+        ],
+        "comment": "Q4 included $2.4B in one-time charges. Adjusted op income of $27.4B stronger than headline. Critical insight: EV/FCF of 308x shows that CapEx is crushing free cash flow even though EV/EBITDA of 16x appears misleadingly cheap. SBC approximately 3% of revenue."
       },
-      "sentiment":{"temperature":"Split after CapEx shock","emoji":"yellow","summary":"$200B CapEx announcement caused 10% stock drop in February 2026 creating sticker shock among investors. CEO Jassy stated capacity gets monetized as fast as installed. Goldman Sachs maintains Buy. StockTwits recovered to Extremely Bullish post-drop. Bear narrative centers on efficiency era being replaced by an endless arms race.","profiles":"Goldman Sachs (Buy), CEO Jassy (Bullish statements), StockTwits (Extremely Bullish post-recovery), Bears: CapEx $200B unsustainable narrative"},
-      "bull":{"thesis":"Three mega-engines: e-commerce with improving margins, AWS accelerating with AI, advertising >$80B annualized.","args":["AWS +24% fastest growth in 13 quarters with $142B ARR and $244B backlog (SEC/call)","Advertising +23% to $21.3B/Q represents high-margin business (SEC)","Bedrock multi-billion ARR with +60% QoQ spend growth (earnings call)","Operating margin structural improvement from 5% to 11%+ trailing","Forward P/E ~28x is reasonable for the growth profile"],"risk":"CapEx $200B in 2026 creates significant ROI risk","fvLow":200,"fvHigh":270,"conviction":"High"},
-      "bear":{"thesis":"EV/FCF of 308x is extreme. CapEx $200B combined with 16K layoffs signals internal stress.","args":["EV/FCF 307.72 (SA confirmed) is among the most extreme in Mag7","CapEx $200B will be destructive for free cash flow generation (earnings call)","16K layoffs announced despite record-level investment spending","EPS missed consensus by $0.01 - precision matters at these valuations","Trailing P/E at 30x is not cheap relative to peers"],"risk":"AWS backlog of $244B represents an enormous revenue pipeline","fvLow":160,"fvHigh":210,"conviction":"Medium"},
-      "verdict":"Key insight: EV/EBITDA of 16x appears cheap but EV/FCF of 308x reveals the true CapEx burden. AWS +24% being fastest growth in 13 quarters gives the bull strong momentum."
+      "earningsCall": {
+        "date": "5 Feb 2026",
+        "period": "Q4 2025",
+        "highlights": [
+          "Revenue $213.4B (+14% YoY, +12% cc) beat consensus $211.3B",
+          "AWS $35.6B (+24% YoY) fastest growth rate in 13 quarters",
+          "Operating income $25.0B including $2.4B in special charges",
+          "EPS $1.95 (+5%) narrowly missed consensus by $0.01",
+          "Full year 2025 revenue $716.9B (+12% YoY)",
+          "AWS backlog grew to $244B (+40% YoY)"
+        ],
+        "guidance": "Q1 2026: Revenue $173.5-178.5B. Operating income $16.5-21.5B. CapEx planned at $200B for 2026 (up dramatically from expected $150B). CEO Jassy: every customer experience that we know of today is going to be reinvented through AI.",
+        "qa": [
+          "CapEx $200B shock caused 10% stock drop next day. Jassy defended: As fast as we install AI capacity it gets monetized",
+          "AWS backlog $244B (+40%): Strong pipeline but analysts questioned conversion rate and timeline",
+          "Advertising $21.3B (+23%): High margin business, Prime Video ads working well",
+          "Bedrock has reached multi-billion dollar ARR with customer spend growing 60% quarter-over-quarter. Trainium custom silicon crossed $10B+ annual run rate",
+          "Layoffs of 16K employees framed as resource reallocation despite record level investment. AWS operating margin 35% (+40bps YoY)"
+        ],
+        "source": "SEC filing (5 Feb 2026), CNBC, Investing.com, Alpha-Sense earnings highlights"
+      },
+      "sentiment": {
+        "temperature": "Split after CapEx shock",
+        "emoji": "yellow",
+        "summary": "$200B CapEx announcement caused 10% stock drop in February 2026 creating sticker shock among investors. CEO Jassy stated capacity gets monetized as fast as installed. Goldman Sachs maintains Buy. StockTwits recovered to Extremely Bullish post-drop. Bear narrative centers on efficiency era being replaced by an endless arms race.",
+        "profiles": "Goldman Sachs (Buy), CEO Jassy (Bullish statements), StockTwits (Extremely Bullish post-recovery), Bears: CapEx $200B unsustainable narrative"
+      },
+      "bull": {
+        "thesis": "Three mega-engines: e-commerce with improving margins, AWS accelerating with AI, advertising >$80B annualized.",
+        "args": [
+          "AWS +24% fastest growth in 13 quarters with $142B ARR and $244B backlog (SEC/call)",
+          "Advertising +23% to $21.3B/Q represents high-margin business (SEC)",
+          "Bedrock multi-billion ARR with +60% QoQ spend growth (earnings call)",
+          "Operating margin structural improvement from 5% to 11%+ trailing",
+          "Forward P/E ~28x is reasonable for the growth profile"
+        ],
+        "risk": "CapEx $200B in 2026 creates significant ROI risk",
+        "fvLow": 200,
+        "fvHigh": 270,
+        "conviction": "High"
+      },
+      "bear": {
+        "thesis": "EV/FCF of 308x is extreme. CapEx $200B combined with 16K layoffs signals internal stress.",
+        "args": [
+          "EV/FCF 307.72 (SA confirmed) is among the most extreme in Mag7",
+          "CapEx $200B will be destructive for free cash flow generation (earnings call)",
+          "16K layoffs announced despite record-level investment spending",
+          "EPS missed consensus by $0.01 - precision matters at these valuations",
+          "Trailing P/E at 30x is not cheap relative to peers"
+        ],
+        "risk": "AWS backlog of $244B represents an enormous revenue pipeline",
+        "fvLow": 160,
+        "fvHigh": 210,
+        "conviction": "Medium"
+      },
+      "verdict": "Key insight: EV/EBITDA of 16x appears cheap but EV/FCF of 308x reveals the true CapEx burden. AWS +24% being fastest growth in 13 quarters gives the bull strong momentum."
     },
     "TSLA": {
-      "name":"Tesla Inc.","sector":"Automotive/Energy/AI","price":"$407.82","mcap":"$1.3T","w52":"$214-499",
+      "name": "Tesla Inc.",
+      "sector": "Automotive/Energy/AI",
+      "price": "$380.94",
+      "mcap": "$1.2T",
+      "w52": "$214-499",
       "valuation": {
-        "trailingPE":{"value":"377","sources":"SA:376.29|GF:377.61|FR:~370","confidence":"high","note":"ALL 3 sources confirm approximately 377x. Extreme valuation."},
-        "forwardPE":{"value":"196","sources":"SA:196.52|GF:196.38","confidence":"high","note":"Both sources agree approximately 196x. Also extreme."},
-        "evEbitda":{"value":"142","sources":"SA:141.99","confidence":"medium","note":"Single source verified. EV/FCF 239.77 per SA."},
-        "peg":{"value":"4.11","sources":"SA:4.11","confidence":"medium","note":"Very expensive relative to growth. Highest in group."},
-        "ps":{"value":"13.7","sources":"Derived: $1.3T/$94.8B","confidence":"high","note":""}
+        "trailingPE": {
+          "value": "377",
+          "sources": "SA:376.29|GF:377.61|FR:~370",
+          "confidence": "high",
+          "note": "ALL 3 sources confirm approximately 377x. Extreme valuation."
+        },
+        "forwardPE": {
+          "value": "196",
+          "sources": "SA:196.52|GF:196.38",
+          "confidence": "high",
+          "note": "Both sources agree approximately 196x. Also extreme."
+        },
+        "evEbitda": {
+          "value": "142",
+          "sources": "SA:141.99",
+          "confidence": "medium",
+          "note": "Single source verified. EV/FCF 239.77 per SA."
+        },
+        "peg": {
+          "value": "4.11",
+          "sources": "SA:4.11",
+          "confidence": "medium",
+          "note": "Very expensive relative to growth. Highest in group."
+        },
+        "ps": {
+          "value": "12.7",
+          "sources": "Calculated: $1.2T/94.8B. MCap from MF:$1.2T|GoogleFinance:$1.2T",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev Q4 25","value":"$24.9B","change":"-4% YoY","positive":false,"source":"SEC+CNBC"},
-        {"label":"GAAP EPS","value":"$0.24","change":"-61%","positive":false,"source":"SEC"},
-        {"label":"nGAAP EPS","value":"$0.50","change":"Beat $0.45","positive":false,"source":"SEC+FactSet"},
-        {"label":"FY25 Rev","value":"$94.8B","change":"-3% (1st decline)","positive":false,"source":"SA"},
-        {"label":"GM Q4","value":"20.1%","change":"Best in 2yr","positive":true,"source":"Investing.com"},
-        {"label":"Auto Margin","value":"17.9%","change":"vs 15.4% prior","positive":true,"source":"Investing.com"}
+      "kpis": [
+        {
+          "label": "Rev Q4 25",
+          "value": "$24.9B",
+          "change": "-4% YoY",
+          "positive": false,
+          "source": "SEC+CNBC"
+        },
+        {
+          "label": "GAAP EPS",
+          "value": "$0.24",
+          "change": "-61%",
+          "positive": false,
+          "source": "SEC"
+        },
+        {
+          "label": "nGAAP EPS",
+          "value": "$0.50",
+          "change": "Beat $0.45",
+          "positive": false,
+          "source": "SEC+FactSet"
+        },
+        {
+          "label": "FY25 Rev",
+          "value": "$94.8B",
+          "change": "-3% (1st decline)",
+          "positive": false,
+          "source": "SA"
+        },
+        {
+          "label": "GM Q4",
+          "value": "20.1%",
+          "change": "Best in 2yr",
+          "positive": true,
+          "source": "Investing.com"
+        },
+        {
+          "label": "Auto Margin",
+          "value": "17.9%",
+          "change": "vs 15.4% prior",
+          "positive": true,
+          "source": "Investing.com"
+        }
       ],
-      "quarters":[
-        {"q":"Q1 25","rev":"$25.7B","gr":"+2%","gm":"18.3%","oi":"$2.7B","eps":"$0.56 nG"},
-        {"q":"Q2 25","rev":"$25.5B","gr":"-6%","gm":"18.2%","oi":"$2.6B","eps":"$0.52 nG"},
-        {"q":"Q3 25","rev":"$25.4B","gr":"-4%","gm":"19.8%","oi":"$2.4B","eps":"$0.52 nG"},
-        {"q":"Q4 25","rev":"$24.9B","gr":"-4%","gm":"20.1%","oi":"$1.6B","eps":"$0.24/$0.50"}
+      "quarters": [
+        {
+          "q": "Q1 25",
+          "rev": "$25.7B",
+          "gr": "+2%",
+          "gm": "18.3%",
+          "oi": "$2.7B",
+          "eps": "$0.56 nG"
+        },
+        {
+          "q": "Q2 25",
+          "rev": "$25.5B",
+          "gr": "-6%",
+          "gm": "18.2%",
+          "oi": "$2.6B",
+          "eps": "$0.52 nG"
+        },
+        {
+          "q": "Q3 25",
+          "rev": "$25.4B",
+          "gr": "-4%",
+          "gm": "19.8%",
+          "oi": "$2.4B",
+          "eps": "$0.52 nG"
+        },
+        {
+          "q": "Q4 25",
+          "rev": "$24.9B",
+          "gr": "-4%",
+          "gm": "20.1%",
+          "oi": "$1.6B",
+          "eps": "$0.24/$0.50"
+        }
       ],
-      "gaap":{"period":"Q4 2025","rows":[["EPS","$0.24","$0.50","108% gap - worst in group","WARN"],["Net Income","$0.84B","~$1.7B","~$0.9B aggressive non-GAAP","WARN"],["FY25 EPS TTM","$1.08","$2.10","94% gap worst in entire group","WARN"]],"comment":"GAAP EPS $1.08 gives trailing P/E of 377x. Non-GAAP $2.10 gives ~194x. Either way: extreme. This is the first annual revenue decline in Tesla history. GAAP/non-GAAP gap of 108% is by far the most aggressive in the group."},
-      "earningsCall":{"date":"28 Jan 2026","period":"Q4 2025",
-        "highlights":["Revenue $24.9B (-4% YoY) marking third consecutive quarter of decline","GAAP EPS $0.24 (-61% YoY), non-GAAP EPS $0.50 (beat estimate of $0.45)","GAAP net income $840M representing steep decline","Operating expenses surged +39% YoY driven by AI, robotics, semiconductor investments","Gross margin 20.1% was the best level in two years with automotive margin recovering to 17.9%","First-ever annual revenue decline: FY2025 approximately $94.8B (-3% YoY)"],
-        "guidance":"CapEx exceeding $20B planned for 2026 focused on AI, robotics, and semiconductor infrastructure. No specific revenue guidance provided. FSD and Robotaxi Austin rollout ongoing. Energy storage continuing to scale.",
-        "qa":["Revenue decline: Deliveries fell 16% YoY in Q4. Musk stated robotics narrative will dominate 2026","FSD and Robotaxi Austin: Regulatory approvals proceeding slowly. Morningstar forecasts deliveries will continue declining through Q3 2026","Optimus: Early prototypes demonstrated but no commercial timeline provided","Margin recovery: GM 20.1% is positive signal from cost reductions and mix shift but OpEx +39% largely offsets the improvement","Energy storage: 46.7 GWh deployed in FY2025 with 14.2 GWh in Q4 alone marking the fastest growing segment"],
-        "source":"CNBC (28 Jan 2026), Teslarati, Electrek, Investing.com"
+      "gaap": {
+        "period": "Q4 2025",
+        "rows": [
+          [
+            "EPS",
+            "$0.24",
+            "$0.50",
+            "108% gap - worst in group",
+            "WARN"
+          ],
+          [
+            "Net Income",
+            "$0.84B",
+            "~$1.7B",
+            "~$0.9B aggressive non-GAAP",
+            "WARN"
+          ],
+          [
+            "FY25 EPS TTM",
+            "$1.08",
+            "$2.10",
+            "94% gap worst in entire group",
+            "WARN"
+          ]
+        ],
+        "comment": "GAAP EPS $1.08 gives trailing P/E of 377x. Non-GAAP $2.10 gives ~194x. Either way: extreme. This is the first annual revenue decline in Tesla history. GAAP/non-GAAP gap of 108% is by far the most aggressive in the group."
       },
-      "sentiment":{"temperature":"Extremely polarized","emoji":"red","summary":"Michael Burry revived his Tesla short calling the stock ridiculously overvalued (Nasdaq Dec 2025). Historical note: Jim Chanos long-running short was never profitable. Bull side: Stifel raised PT to $483 Buy citing Robotaxi progress. Canaccord PT $490 Buy. Goldman Sachs maintains $315 Neutral as most conservative. Morningstar expects deliveries to continue declining through Q3 2026. Humanoid robotics narrative (Optimus) seen as major 2026 theme by bulls.","profiles":"@michaeljburry (Short - ridiculously overvalued), Stifel ($483 Buy), Canaccord ($490 Buy), Goldman Sachs ($315 Neutral), Morningstar (Bearish deliveries), Cathie Wood/ARK ($1.14B position but trimming)"},
-      "bull":{"thesis":"Valuation reflects FSD, Optimus, robotaxi, energy storage, and AI optionality - not current earnings.","args":["Automotive margin recovery from 15.4% to 17.9% shows operational improvement (SEC)","Energy storage deployed 46.7 GWh in FY2025 as fastest growing segment (SEC)","FSD and Robotaxi potential if and when regulators approve","Optimus humanoid robot represents early stage but enormous TAM","CapEx exceeding $20B in 2026 for AI and semiconductor infrastructure (earnings call)"],"risk":"If FSD and robotaxi remain perpetually next year the valuation support collapses","fvLow":250,"fvHigh":600,"conviction":"Low (extremely wide range)"},
-      "bear":{"thesis":"Trailing P/E of 377x with negative revenue growth. Core automotive business is shrinking.","args":["Trailing P/E 377x confirmed by all 3 independent sources represents extreme valuation","First annual revenue decline of -3% in company history (SEC confirmed)","GAAP net income fell 61% YoY in Q4 (SEC confirmed)","GAAP versus non-GAAP gap of 108% is most aggressive in the entire peer group","BYD gaining global market share combined with Musk political risk and polarization"],"risk":"Energy storage and AI optionality could be genuinely transformative","fvLow":120,"fvHigh":250,"conviction":"High"},
-      "verdict":"Most polarized stock in the group. Trailing P/E of 377x combined with negative revenue growth creates extreme bull versus bear divergence. Bear has the strongest near-term data support."
+      "earningsCall": {
+        "date": "28 Jan 2026",
+        "period": "Q4 2025",
+        "highlights": [
+          "Revenue $24.9B (-4% YoY) marking third consecutive quarter of decline",
+          "GAAP EPS $0.24 (-61% YoY), non-GAAP EPS $0.50 (beat estimate of $0.45)",
+          "GAAP net income $840M representing steep decline",
+          "Operating expenses surged +39% YoY driven by AI, robotics, semiconductor investments",
+          "Gross margin 20.1% was the best level in two years with automotive margin recovering to 17.9%",
+          "First-ever annual revenue decline: FY2025 approximately $94.8B (-3% YoY)"
+        ],
+        "guidance": "CapEx exceeding $20B planned for 2026 focused on AI, robotics, and semiconductor infrastructure. No specific revenue guidance provided. FSD and Robotaxi Austin rollout ongoing. Energy storage continuing to scale.",
+        "qa": [
+          "Revenue decline: Deliveries fell 16% YoY in Q4. Musk stated robotics narrative will dominate 2026",
+          "FSD and Robotaxi Austin: Regulatory approvals proceeding slowly. Morningstar forecasts deliveries will continue declining through Q3 2026",
+          "Optimus: Early prototypes demonstrated but no commercial timeline provided",
+          "Margin recovery: GM 20.1% is positive signal from cost reductions and mix shift but OpEx +39% largely offsets the improvement",
+          "Energy storage: 46.7 GWh deployed in FY2025 with 14.2 GWh in Q4 alone marking the fastest growing segment"
+        ],
+        "source": "CNBC (28 Jan 2026), Teslarati, Electrek, Investing.com"
+      },
+      "sentiment": {
+        "temperature": "Extremely polarized",
+        "emoji": "red",
+        "summary": "Michael Burry revived his Tesla short calling the stock ridiculously overvalued (Nasdaq Dec 2025). Historical note: Jim Chanos long-running short was never profitable. Bull side: Stifel raised PT to $483 Buy citing Robotaxi progress. Canaccord PT $490 Buy. Goldman Sachs maintains $315 Neutral as most conservative. Morningstar expects deliveries to continue declining through Q3 2026. Humanoid robotics narrative (Optimus) seen as major 2026 theme by bulls.",
+        "profiles": "@michaeljburry (Short - ridiculously overvalued), Stifel ($483 Buy), Canaccord ($490 Buy), Goldman Sachs ($315 Neutral), Morningstar (Bearish deliveries), Cathie Wood/ARK ($1.14B position but trimming)"
+      },
+      "bull": {
+        "thesis": "Valuation reflects FSD, Optimus, robotaxi, energy storage, and AI optionality - not current earnings.",
+        "args": [
+          "Automotive margin recovery from 15.4% to 17.9% shows operational improvement (SEC)",
+          "Energy storage deployed 46.7 GWh in FY2025 as fastest growing segment (SEC)",
+          "FSD and Robotaxi potential if and when regulators approve",
+          "Optimus humanoid robot represents early stage but enormous TAM",
+          "CapEx exceeding $20B in 2026 for AI and semiconductor infrastructure (earnings call)"
+        ],
+        "risk": "If FSD and robotaxi remain perpetually next year the valuation support collapses",
+        "fvLow": 250,
+        "fvHigh": 600,
+        "conviction": "Low (extremely wide range)"
+      },
+      "bear": {
+        "thesis": "Trailing P/E of 377x with negative revenue growth. Core automotive business is shrinking.",
+        "args": [
+          "Trailing P/E 377x confirmed by all 3 independent sources represents extreme valuation",
+          "First annual revenue decline of -3% in company history (SEC confirmed)",
+          "GAAP net income fell 61% YoY in Q4 (SEC confirmed)",
+          "GAAP versus non-GAAP gap of 108% is most aggressive in the entire peer group",
+          "BYD gaining global market share combined with Musk political risk and polarization"
+        ],
+        "risk": "Energy storage and AI optionality could be genuinely transformative",
+        "fvLow": 120,
+        "fvHigh": 250,
+        "conviction": "High"
+      },
+      "verdict": "Most polarized stock in the group. Trailing P/E of 377x combined with negative revenue growth creates extreme bull versus bear divergence. Bear has the strongest near-term data support."
     },
     "TSM": {
-      "name":"Taiwan Semiconductor Manufacturing","sector":"Semiconductor Foundry","price":"~$190 ADR","mcap":"$1.0T","w52":"$127-222",
+      "name": "Taiwan Semiconductor Manufacturing",
+      "sector": "Semiconductor Foundry",
+      "price": "$338.71(ADR)",
+      "mcap": "$1.76T",
+      "w52": "$127-222",
       "valuation": {
-        "trailingPE":{"value":"~25-33*","sources":"SA ADR:164.5*|GF:33.66|Local TWSE ~25x","confidence":"medium","note":"*SA ADR P/E abnormally high due to TIFRS/ADR conversion. Local Taiwan P/E approximately 25x is most accurate. GF shows 33.66."},
-        "forwardPE":{"value":"24-26","sources":"SA:24.24|GF:25.73","confidence":"high","note":"Forward P/E more stable and reliable than trailing for TSM ADR. Range 24-26x."},
-        "evEbitda":{"value":"17.3","sources":"SA:17.34","confidence":"medium","note":"Single source verified."},
-        "peg":{"value":"~0.7-0.8","sources":"Estimated: ~25x forward P/E divided by 30%+ growth","confidence":"medium","note":"Not all sources report PEG directly for ADR."},
-        "ps":{"value":"8.2","sources":"Derived: $1.0T/$122B","confidence":"high","note":""}
+        "trailingPE": {
+          "value": "~25-33*",
+          "sources": "SA ADR:164.5*|GF:33.66|Local TWSE ~25x",
+          "confidence": "medium",
+          "note": "*SA ADR P/E abnormally high due to TIFRS/ADR conversion. Local Taiwan P/E approximately 25x is most accurate. GF shows 33.66."
+        },
+        "forwardPE": {
+          "value": "24-26",
+          "sources": "SA:24.24|GF:25.73",
+          "confidence": "high",
+          "note": "Forward P/E more stable and reliable than trailing for TSM ADR. Range 24-26x."
+        },
+        "evEbitda": {
+          "value": "17.3",
+          "sources": "SA:17.34",
+          "confidence": "medium",
+          "note": "Single source verified."
+        },
+        "peg": {
+          "value": "~0.7-0.8",
+          "sources": "Estimated: ~25x forward P/E divided by 30%+ growth",
+          "confidence": "medium",
+          "note": "Not all sources report PEG directly for ADR."
+        },
+        "ps": {
+          "value": "14.4",
+          "sources": "Calculated: $1.76T/122B. MCap from CompaniesMarketCap:$1.755T",
+          "confidence": "high",
+          "note": "P/S derived from verified mcap / TTM revenue. Mar 24, 2026."
+        }
       },
-      "kpis":[
-        {"label":"Rev Q4 USD","value":"$33.7B","change":"+25.5% YoY","positive":true,"source":"TSMC IR+SEC"},
-        {"label":"Net Inc Q4","value":"NT$506B","change":"+35% YoY","positive":true,"source":"TSMC IR"},
-        {"label":"GM Q4","value":"62.3%","change":"+2.8pp QoQ","positive":true,"source":"TSMC IR"},
-        {"label":"Op Margin","value":"54.0%","change":"+3.4pp QoQ","positive":true,"source":"TSMC IR"},
-        {"label":"FY25 Growth","value":"+35.9% USD","change":"Exceptional","positive":true,"source":"TSMC IR"},
-        {"label":"ADR EPS Q4","value":"$3.14","change":"+35% YoY","positive":true,"source":"TSMC IR"}
+      "kpis": [
+        {
+          "label": "Rev Q4 USD",
+          "value": "$33.7B",
+          "change": "+25.5% YoY",
+          "positive": true,
+          "source": "TSMC IR+SEC"
+        },
+        {
+          "label": "Net Inc Q4",
+          "value": "NT$506B",
+          "change": "+35% YoY",
+          "positive": true,
+          "source": "TSMC IR"
+        },
+        {
+          "label": "GM Q4",
+          "value": "62.3%",
+          "change": "+2.8pp QoQ",
+          "positive": true,
+          "source": "TSMC IR"
+        },
+        {
+          "label": "Op Margin",
+          "value": "54.0%",
+          "change": "+3.4pp QoQ",
+          "positive": true,
+          "source": "TSMC IR"
+        },
+        {
+          "label": "FY25 Growth",
+          "value": "+35.9% USD",
+          "change": "Exceptional",
+          "positive": true,
+          "source": "TSMC IR"
+        },
+        {
+          "label": "ADR EPS Q4",
+          "value": "$3.14",
+          "change": "+35% YoY",
+          "positive": true,
+          "source": "TSMC IR"
+        }
       ],
-      "quarters":[
-        {"q":"Q1 25","rev":"$25.8B","gr":"+42%","gm":"58.8%","oi":"$11.3B","eps":"$2.12 ADR"},
-        {"q":"Q2 25","rev":"$28.9B","gr":"+36%","gm":"57.8%","oi":"$13.1B","eps":"$2.38 ADR"},
-        {"q":"Q3 25","rev":"$33.1B","gr":"+39%","gm":"59.5%","oi":"$14.9B","eps":"$2.77 ADR"},
-        {"q":"Q4 25","rev":"$33.7B","gr":"+25.5%","gm":"62.3%","oi":"$16.3B","eps":"$3.14 ADR"}
+      "quarters": [
+        {
+          "q": "Q1 25",
+          "rev": "$25.8B",
+          "gr": "+42%",
+          "gm": "58.8%",
+          "oi": "$11.3B",
+          "eps": "$2.12 ADR"
+        },
+        {
+          "q": "Q2 25",
+          "rev": "$28.9B",
+          "gr": "+36%",
+          "gm": "57.8%",
+          "oi": "$13.1B",
+          "eps": "$2.38 ADR"
+        },
+        {
+          "q": "Q3 25",
+          "rev": "$33.1B",
+          "gr": "+39%",
+          "gm": "59.5%",
+          "oi": "$14.9B",
+          "eps": "$2.77 ADR"
+        },
+        {
+          "q": "Q4 25",
+          "rev": "$33.7B",
+          "gr": "+25.5%",
+          "gm": "62.3%",
+          "oi": "$16.3B",
+          "eps": "$3.14 ADR"
+        }
       ],
-      "gaap":{"period":"Q4 2025","rows":[["Revenue","NT$1,046B","N/A","TIFRS equivalent to GAAP","OK"],["Gross Margin","62.3%","N/A","Industry-leading level","OK"]],"comment":"Minimal SBC (less than 1% of revenue). Reports under TIFRS which is transparent and GAAP-equivalent. Cleanest financial reporting in the entire peer group. Note: ADR trailing P/E is unreliable due to conversion effects - use forward P/E or local Taiwan figures."},
-      "earningsCall":{"date":"15 Jan 2026","period":"Q4 2025",
-        "highlights":["Revenue NT$1,046B ($33.7B USD +25.5% YoY in USD, +5.7% QoQ in NT$)","Net income NT$505.7B (+35% YoY, +11.8% QoQ)","Gross margin 62.3% (+2.8pp QoQ) driven by cost improvements, favorable FX, and high utilization","Operating margin 54.0% (+3.4pp QoQ)","Advanced technologies (7nm and below) accounted for 77% of total wafer revenue in Q4","Full year 2025: Revenue growth +35.9% YoY in USD terms. Free cash flow reached NT$1 trillion"],
-        "guidance":"Q1 2026: Revenue expected $34.6-35.8B USD. Gross margin 63-65%. Operating margin 54-56%. CapEx for 2026: $52-56B (70-80% for advanced process technologies). Management expects 2nm ramp to begin in 2026. Revenue growth approximately 30% in USD for full year 2026.",
-        "qa":["2nm technology: CFO Wendell Huang stated initial gross margin dilution of 2-3% for full year 2026, potentially widening to 3-4% in later stages as more fabs ramp","Arizona fab: Accelerating capacity expansion with first fab in high-volume production since Q4 2024","AI accelerator revenue: Reached high-teens percentage of total revenue in 2025. HPC accounted for 58% of full year 2025 revenue growing 48% YoY","Pricing power: Gross margin of 62.3% despite ongoing expansion demonstrates strong negotiating position with customers","Dividend commitment: NT$23 per share for 2026 up from NT$18 in 2025 with stated intent for steadily increasing dividends"],
-        "source":"TSMC IR press release (15 Jan 2026), SEC filing, TipRanks earnings summary, Yahoo Finance transcript"
+      "gaap": {
+        "period": "Q4 2025",
+        "rows": [
+          [
+            "Revenue",
+            "NT$1,046B",
+            "N/A",
+            "TIFRS equivalent to GAAP",
+            "OK"
+          ],
+          [
+            "Gross Margin",
+            "62.3%",
+            "N/A",
+            "Industry-leading level",
+            "OK"
+          ]
+        ],
+        "comment": "Minimal SBC (less than 1% of revenue). Reports under TIFRS which is transparent and GAAP-equivalent. Cleanest financial reporting in the entire peer group. Note: ADR trailing P/E is unreliable due to conversion effects - use forward P/E or local Taiwan figures."
       },
-      "sentiment":{"temperature":"Bullish as AI infrastructure backbone","emoji":"green","summary":"Motley Fool: TSM and Broadcom could pass Amazon in market cap within 3 years. Goldman Sachs: TSM is the pick-and-shovel play because it does not matter which chip architecture wins since TSMC manufactures them all. Investing.com: TSM named among top 5 stocks cashing the AI checks. Geopolitical concerns around Taiwan remain the only significant bear argument. StockTwits sentiment Bullish.","profiles":"Goldman Sachs (Buy - pick-and-shovel play), Motley Fool (Buy - could pass AMZN), Investing.com analysts (Top 5 AI beneficiary), Morningstar (consensus Buy), StockTwits (Bullish)"},
-      "bull":{"thesis":"Irreplaceable backbone of the AI revolution. 77% of revenue from advanced nodes, gross margin 62%+, customers have no alternatives.","args":["Monopoly-like position in leading-edge foundry with no real competitor (TSMC IR)","Revenue grew +36% in FY2025 in USD driven by insatiable AI demand (TSMC IR)","Gross margin 62.3% and rising demonstrates monopoly-level pricing power","2nm technology ramp beginning in 2026 represents the next premium node","Forward P/E approximately 25x with 30%+ growth gives estimated PEG of 0.7-0.8"],"risk":"Taiwan geopolitical risk is existential - cannot be ignored","fvLow":190,"fvHigh":250,"conviction":"High"},
-      "bear":{"thesis":"Geopolitical risk around Taiwan is existential. Overseas fab ramp dilutes margins. CapEx $52-56B for 2026.","args":["Taiwan risk represents catastrophic scenario if military conflict or blockade occurs","Overseas fab margin dilution expected at 2-4% (earnings call confirmed)","CapEx $52-56B for 2026 pressures free cash flow generation (earnings call)","2nm initial ramp expected to dilute gross margin by 2-3% during 2026 (earnings call)","Customer concentration with top 3 customers (AAPL, NVDA, AMD) dominating revenue"],"risk":"If geopolitical situation stabilizes there is arguably no better company to own","fvLow":140,"fvHigh":190,"conviction":"Medium"},
-      "verdict":"Both agree: technically unmatched in semiconductor manufacturing. Bear points to macro geopolitical risk as primary concern. Forward P/E approximately 25x combined with 30%+ revenue growth is extremely compelling if you can accept the Taiwan risk."
+      "earningsCall": {
+        "date": "15 Jan 2026",
+        "period": "Q4 2025",
+        "highlights": [
+          "Revenue NT$1,046B ($33.7B USD +25.5% YoY in USD, +5.7% QoQ in NT$)",
+          "Net income NT$505.7B (+35% YoY, +11.8% QoQ)",
+          "Gross margin 62.3% (+2.8pp QoQ) driven by cost improvements, favorable FX, and high utilization",
+          "Operating margin 54.0% (+3.4pp QoQ)",
+          "Advanced technologies (7nm and below) accounted for 77% of total wafer revenue in Q4",
+          "Full year 2025: Revenue growth +35.9% YoY in USD terms. Free cash flow reached NT$1 trillion"
+        ],
+        "guidance": "Q1 2026: Revenue expected $34.6-35.8B USD. Gross margin 63-65%. Operating margin 54-56%. CapEx for 2026: $52-56B (70-80% for advanced process technologies). Management expects 2nm ramp to begin in 2026. Revenue growth approximately 30% in USD for full year 2026.",
+        "qa": [
+          "2nm technology: CFO Wendell Huang stated initial gross margin dilution of 2-3% for full year 2026, potentially widening to 3-4% in later stages as more fabs ramp",
+          "Arizona fab: Accelerating capacity expansion with first fab in high-volume production since Q4 2024",
+          "AI accelerator revenue: Reached high-teens percentage of total revenue in 2025. HPC accounted for 58% of full year 2025 revenue growing 48% YoY",
+          "Pricing power: Gross margin of 62.3% despite ongoing expansion demonstrates strong negotiating position with customers",
+          "Dividend commitment: NT$23 per share for 2026 up from NT$18 in 2025 with stated intent for steadily increasing dividends"
+        ],
+        "source": "TSMC IR press release (15 Jan 2026), SEC filing, TipRanks earnings summary, Yahoo Finance transcript"
+      },
+      "sentiment": {
+        "temperature": "Bullish as AI infrastructure backbone",
+        "emoji": "green",
+        "summary": "Motley Fool: TSM and Broadcom could pass Amazon in market cap within 3 years. Goldman Sachs: TSM is the pick-and-shovel play because it does not matter which chip architecture wins since TSMC manufactures them all. Investing.com: TSM named among top 5 stocks cashing the AI checks. Geopolitical concerns around Taiwan remain the only significant bear argument. StockTwits sentiment Bullish.",
+        "profiles": "Goldman Sachs (Buy - pick-and-shovel play), Motley Fool (Buy - could pass AMZN), Investing.com analysts (Top 5 AI beneficiary), Morningstar (consensus Buy), StockTwits (Bullish)"
+      },
+      "bull": {
+        "thesis": "Irreplaceable backbone of the AI revolution. 77% of revenue from advanced nodes, gross margin 62%+, customers have no alternatives.",
+        "args": [
+          "Monopoly-like position in leading-edge foundry with no real competitor (TSMC IR)",
+          "Revenue grew +36% in FY2025 in USD driven by insatiable AI demand (TSMC IR)",
+          "Gross margin 62.3% and rising demonstrates monopoly-level pricing power",
+          "2nm technology ramp beginning in 2026 represents the next premium node",
+          "Forward P/E approximately 25x with 30%+ growth gives estimated PEG of 0.7-0.8"
+        ],
+        "risk": "Taiwan geopolitical risk is existential - cannot be ignored",
+        "fvLow": 190,
+        "fvHigh": 250,
+        "conviction": "High"
+      },
+      "bear": {
+        "thesis": "Geopolitical risk around Taiwan is existential. Overseas fab ramp dilutes margins. CapEx $52-56B for 2026.",
+        "args": [
+          "Taiwan risk represents catastrophic scenario if military conflict or blockade occurs",
+          "Overseas fab margin dilution expected at 2-4% (earnings call confirmed)",
+          "CapEx $52-56B for 2026 pressures free cash flow generation (earnings call)",
+          "2nm initial ramp expected to dilute gross margin by 2-3% during 2026 (earnings call)",
+          "Customer concentration with top 3 customers (AAPL, NVDA, AMD) dominating revenue"
+        ],
+        "risk": "If geopolitical situation stabilizes there is arguably no better company to own",
+        "fvLow": 140,
+        "fvHigh": 190,
+        "conviction": "Medium"
+      },
+      "verdict": "Both agree: technically unmatched in semiconductor manufacturing. Bear points to macro geopolitical risk as primary concern. Forward P/E approximately 25x combined with 30%+ revenue growth is extremely compelling if you can accept the Taiwan risk."
     }
   }
 };
